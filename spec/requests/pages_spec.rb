@@ -5,7 +5,7 @@ RSpec.describe "Pages", type: :request do
   let(:base_title) { "Tookieti" }
 
   describe "Home page" do
-    before { visit "/pages/home" }
+    before { visit root_path }
 
     it "should have the content 'Tookieti'" do
       expect(page).to have_content("#{base_title}")
@@ -17,7 +17,7 @@ RSpec.describe "Pages", type: :request do
   end
 
   describe "About page" do
-    before { visit "pages/about" }
+    before { visit about_path }
     
     it "should have the content 'About'" do
       expect(page).to have_content('About')
