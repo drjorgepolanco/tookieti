@@ -60,6 +60,9 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.4.0)
+    foundation-rails (5.4.5.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -197,6 +200,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  foundation-rails
   haml-rails
   hirb
   jbuilder (~> 2.0)
