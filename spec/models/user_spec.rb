@@ -65,4 +65,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "when email address is taken" do
+    before do
+      user_duplicated_email       = @user.dup
+      user_duplicated_email.email = @user.email.upcase
+      user_duplicated_email.save
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
