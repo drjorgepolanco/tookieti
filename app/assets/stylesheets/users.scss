@@ -1,3 +1,9 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "foundation_and_overrides";
+
+#user_area {
+  padding-top: 1em;
+  background-color: $white;
+  img {
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,7 @@
+- provide(:title, full_name(@user))
+
+%row
+  %aside.large-2.columns#user_area
+    %section.large-12.columns.text-center
+      = gravatar(@user)
+      %h3= full_name(@user)

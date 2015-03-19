@@ -2,17 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Pages", type: :request do
 
-  let(:base_title) { "Tookieti" }
-
   describe "Home page" do
     before { visit root_path }
 
     it "should have the content 'Tookieti'" do
-      expect(page).to have_content("#{base_title}")
+      expect(page).to have_content("Tookieti")
     end
 
     it "should have title 'Tookieti'" do
-      expect(page).to have_title("#{base_title}")
+      expect(page).to have_title("Tookieti")
     end
   end
 
@@ -24,7 +22,7 @@ RSpec.describe "Pages", type: :request do
     end
 
     it "should have title 'About | Tookieti'" do
-      expect(page).to have_title("About | #{base_title}")
+      expect(page).to have_title(full_title("About"))
     end
   end
 end

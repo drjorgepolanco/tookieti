@@ -1,0 +1,11 @@
+@import "foundation_and_overrides";
+
+.text-center {
+  text-align: center;
+}
+
+#error_explanation {
+  ul {
+    color: $alert-color;
+  }
+}

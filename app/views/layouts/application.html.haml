@@ -9,5 +9,8 @@
     = csrf_meta_tags
   %body
     = render "layouts/header"
+    - flash.each do |msg_type, msg|
+      %div{class: "alert-box #{msg_type}"}
+        = msg
     = yield
     = javascript_include_tag "application"
