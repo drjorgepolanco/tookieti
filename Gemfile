@@ -14,14 +14,9 @@ gem 'hirb', '~> 0.7.3'
 gem 'haml-rails', '~> 0.9.0'
 gem 'foundation-rails', '~> 5.5.1.0'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :production do
   gem 'rails_12factor', '~> 0.0.3'
+  gem 'puma', '2.11.1'
 end
 
 group :test do
@@ -34,6 +29,5 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.3.3'
   gem 'rspec-rails', '~> 3.2.1'
-  # gem 'guard-livereload', '~> 2.4', require: false
 end
 
