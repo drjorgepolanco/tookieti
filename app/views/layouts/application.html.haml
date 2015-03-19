@@ -10,7 +10,8 @@
   %body
     = render "layouts/header"
     - flash.each do |msg_type, msg|
-      %div{class: "alert-box #{msg_type}"}
-        = msg
+      = content_tag(:div, msg, class: "alert-box #{msg_type}")
     = yield
     = javascript_include_tag "application"
+
+    %div{class: "alert-box #{msg_type}"}
