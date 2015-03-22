@@ -1,0 +1,15 @@
+- provide(:title, "Log In")
+
+.row
+  .large-6.medium-6.large-offset-3.medium-offset-3.columns
+    %h1.text-center Log In
+    = form_for(:session, url: login_path) do |f|
+
+      = f.email_field    :email,    placeholder: "Email",    class: "radius"
+      = f.password_field :password, placeholder: "Password", class: "radius"
+      = f.submit "Log In", class: "button expand radius"
+    %p 
+      New User?
+      %br/
+      = link_to('Sign Up Now!', signup_path)
+

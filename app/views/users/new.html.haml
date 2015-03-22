@@ -11,5 +11,9 @@
       = f.password_field :password,              placeholder: "Password",         class: "radius"
       = f.password_field :password_confirmation, placeholder: "Confirm Password", class: "radius"
       = f.submit "Create Account", class: "button success expand radius"
+    %p 
+      Already a User?
+      %br/
+      = link_to('Log In Now!', login_path)
 
 
