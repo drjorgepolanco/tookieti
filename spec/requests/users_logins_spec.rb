@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersLogins", type: :request do
+RSpec.describe "Users Logins", type: :request do
 
   before do
     @user = FactoryGirl.create(:user, :first_name => "Julito",
@@ -9,7 +9,7 @@ RSpec.describe "UsersLogins", type: :request do
                                :password_digest => User.digest("password"))
   end
   
-  it "does not happen with invalid information" do
+  it "is not possible with invalid information" do
     get login_path
     expect(response).to render_template(:new)
     post login_path, session: { email: "", password: "" }
@@ -33,12 +33,12 @@ RSpec.describe "UsersLogins", type: :request do
     expect(response).to render_template("pages/home")
   end
 
-  it "happen with remembering" do
+  it "is possible with remembering" do
     log_in_as(@user, remember_me: '1')
-    expect(cookies['remember_token']).to_not be(nil)
+    expect(cookies['remember_token']).to eq(assigns(:user).remember_token)
   end
 
-  it "happen without remembering" do
+  it "is possible without remembering" do
     log_in_as(@user, remember_me: '0')
     expect(cookies['remember_token']).to be(nil)
   end

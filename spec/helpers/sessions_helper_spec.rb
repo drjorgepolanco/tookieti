@@ -18,5 +18,4 @@ RSpec.describe "SessionsHelper", type: :helper do
       expect(current_user).to be(nil)
     end
   end
-
 end
