@@ -1,23 +1,22 @@
-module SessionsHelper
-  def is_logged_in?
-    !session[:user_id].nil?
-  end
+require 'rails_helper'
 
-  def log_in_as(user, options = {})
-    password    = options[:password]    || 'password'
-    remember_me = options[:remember_me] || '1'
-    if integration_test?
-      post login_path, session: { email:       user.email,
-                                  password:    password,
-                                  remember_me: remember_me }
-    else
-      session[:user_id] = user.id
+RSpec.describe "SessionsHelper", type: :helper do
+
+  before do
+    @user = FactoryGirl.create(:user)
+    remember(@user)
+  end
+  
+  describe "current user" do
+    it "returns the right user when the session is nil" do
+      expect(current_user).to eq(@user)
+      expect(is_logged_in?).to be(true)
+    end
+
+    it "returns nil when remember digest is wrong" do
+      @user.update_attribute(:remember_digest, User.digest(User.new_token))
+      expect(current_user).to be(nil)
     end
   end
 
-  private
-
-    def integration_test?
-      defined?(post_via_redirect)
-    end
 end
