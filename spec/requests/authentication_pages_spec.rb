@@ -37,7 +37,8 @@ RSpec.describe "AuthenticationPages", type: :request do
 
         describe "followed by log out" do
           before { click_link "Log out" }
-          it { is_expected.to have_link("Log In") }
+          it { is_expected.to have_link("Log In",      href: login_path)      }
+          it { is_expected.to_not have_link("Profile", href: user_path(user)) }
         end
       end
     end
