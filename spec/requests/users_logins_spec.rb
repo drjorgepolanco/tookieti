@@ -25,7 +25,11 @@ RSpec.describe "UsersLogins", type: :request do
       expect(response).to redirect_to(user)
       follow_redirect!
       expect(response).to render_template("users/show")
-      assert logged_in?
+      expect(logged_in?).to be(true)
+      delete logout_path
+      expect(response).to redirect_to(root_path)
+      follow_redirect!
+      expect(response).to render_template("pages/home")
     end
   end
 end
