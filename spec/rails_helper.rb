@@ -5,11 +5,11 @@ require 'rspec/rails'
 
 include ApplicationHelper
 include UsersHelper
-include SessionsHelper
 
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include SessionsHelper
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
   config.include Capybara::DSL
