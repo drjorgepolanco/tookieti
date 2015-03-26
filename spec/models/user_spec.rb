@@ -70,6 +70,7 @@ RSpec.describe User, type: :model do
                     tricu@lito_mail.com 
                     triculito@mail#com 
                     triculito@++mail.com]
+
         emails.each do |invalid_email|
           @user.email = invalid_email
           expect(@user).to_not be_valid
@@ -83,6 +84,7 @@ RSpec.describe User, type: :model do
                     Tricu_Lito@mail.COM 
                     triculi-to@mail.us
                     dr.triculito@mail.org]
+
         emails.each do |valid_email|
           @user.email = valid_email
           expect(@user).to be_valid
@@ -90,7 +92,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe "when address is taken" do
+    describe "when address is taken already" do
       before do
         user_duplicated_email       = @user.dup
         user_duplicated_email.email = @user.email.upcase
