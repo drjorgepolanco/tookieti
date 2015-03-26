@@ -8,29 +8,38 @@ RSpec.describe "Users Logins", type: :request do
                                :email => "triculito@gmail.com",
                                :password_digest => User.digest("password"))
   end
-  
-  it "is not possible with invalid information" do
-    get login_path
-    expect(response).to render_template(:new)
-    post login_path, session: { email: "", password: "" }
-    expect(response).to render_template(:new)
-    expect(flash[:alert]).to_not be_nil
-    get root_path
-    expect(flash[:alert]).to be_nil
+
+  describe "with invalid information" do
+    it "should not work and flash msg should not persist" do
+      get login_path
+      expect(response).to render_template(:new)
+      post login_path, session: { email: "", password: "" }
+      expect(response).to render_template(:new)
+      expect(flash[:alert]).to_not be_nil
+      get root_path
+      expect(flash[:alert]).to be_nil
+    end
   end
 
-  it "happen successfully with valid information" do
-    get login_path
-    expect(response).to render_template("sessions/new")
-    post login_path, session: { email: @user.email, password: "password" }
-    expect(response).to redirect_to(@user)
-    follow_redirect!
-    expect(response).to render_template("users/show")
-    expect(is_logged_in?).to be(true)
-    delete logout_path
-    expect(response).to redirect_to(root_path)
-    follow_redirect!
-    expect(response).to render_template("pages/home")
+  describe "with valid information followed by logout" do
+    it "should work and first redirect to user's show and then to root" do
+      get login_path
+      expect(response).to render_template(:new)
+      post login_path, session: { email: @user.email, password: "password" }
+      expect(is_logged_in?).to be(true)
+      expect(response).to redirect_to(@user)
+      follow_redirect!
+      expect(response).to render_template(:show)
+      expect(response.body).to include("Log out")
+      expect(response.body).to include("Profile")
+      delete logout_path
+      expect(is_logged_in?).to be(false)
+      expect(response).to redirect_to(root_path)
+      delete logout_path
+      follow_redirect!
+      expect(response.body).to include("Log In")
+      expect(response.body).to include("Sign Up")
+    end
   end
 
   it "is possible with remembering" do

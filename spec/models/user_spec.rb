@@ -10,116 +10,96 @@ RSpec.describe User, type: :model do
                      password_confirmation: "worldtriculi") 
   end
 
-  subject { @user }
+  it "should be valid" do
+    expect(@user).to be_valid
+  end
 
-  it { is_expected.to respond_to(:first_name)            }
-  it { is_expected.to respond_to(:last_name)             }
-  it { is_expected.to respond_to(:email)                 }
-  it { is_expected.to respond_to(:password_digest)       }
-  it { is_expected.to respond_to(:password)              }
-  it { is_expected.to respond_to(:password_confirmation) }
-  it { is_expected.to respond_to(:remember_token)        }
-  it { is_expected.to respond_to(:authenticate)          }
-  it { is_expected.to be_valid                           }
-
-  describe "fist name" do
-    describe "when is not present" do
-      before { @user.first_name = ""       }
-      it     { is_expected.to_not be_valid }
+  describe "user first name" do
+    it "should be present" do
+      @user.first_name = ""
+      expect(@user).to_not be_valid
     end
 
-    describe "when is too long" do
-      before { @user.first_name = "x" * 41 }
-      it     { is_expected.to_not be_valid }
+    it "should not be too long" do
+      @user.first_name = "x" * 41
+      expect(@user).to_not be_valid
     end
   end
 
-  describe "last name" do
-    describe "when is not present" do
-      before { @user.last_name = ""        }
-      it     { is_expected.to_not be_valid }
+  describe "user last name" do
+    it "should be present" do
+      @user.last_name = ""
+      expect(@user).to_not be_valid
     end
 
-    describe "when is too long" do
-      before { @user.last_name = "x" * 41  }
-      it     { is_expected.to_not be_valid }
+    it "should not be too long" do
+      @user.last_name = "x" * 41
+      expect(@user).to_not be_valid
     end
   end
 
-  describe "email" do
-    describe "when is not present" do
-      before { @user.email = ""            }
-      it     { is_expected.to_not be_valid }
+  describe "user email" do
+    it "should be present" do
+      @user.email = ""
+      expect(@user).to_not be_valid
     end
 
-    describe "when is too short" do
-      before { @user.email = "aaaa"        }
-      it     { is_expected.to_not be_valid }
+    it "should not be too long" do
+      @user.email = "x" * 82 + "@mail.com"
+      expect(@user).to_not be_valid
     end
 
-    describe "when is too long" do
-      before { @user.email = "x" * 81      }
-      it     { is_expected.to_not be_valid }
-    end
+    it "should not be valid when format is not valid" do
+      emails = %w[tri_cu_li_to.mail 
+                  tricu.lito@mail. 
+                  triculito@mail,com 
+                  tricu@lito_mail.com 
+                  triculito@mail#com 
+                  triculito@++mail.com]
 
-    describe "when format is not valid" do
-      it "should not be valid" do
-        emails = %w[tri_cu_li_to.mail 
-                    tricu.lito@mail. 
-                    triculito@mail,com 
-                    tricu@lito_mail.com 
-                    triculito@mail#com 
-                    triculito@++mail.com]
-
-        emails.each do |invalid_email|
-          @user.email = invalid_email
-          expect(@user).to_not be_valid
-        end
+      emails.each do |invalid_email|
+        @user.email = invalid_email
+        expect(@user).to_not be_valid
       end
     end
 
-    describe "when format is valid" do
-      it "should be valid" do
-        emails = %w[triculito@mail.com 
-                    Tricu_Lito@mail.COM 
-                    triculi-to@mail.us
-                    dr.triculito@mail.org]
+    it "should be valid when format is valid" do
+      emails = %w[triculito@mail.com 
+                  Tricu_Lito@mail.COM 
+                  triculi-to@mail.us
+                  dr.triculito@mail.org]
 
-        emails.each do |valid_email|
-          @user.email = valid_email
-          expect(@user).to be_valid
-        end
+      emails.each do |valid_email|
+        @user.email = valid_email
+        expect(@user).to be_valid
       end
     end
 
-    describe "when address is taken already" do
-      before do
-        user_duplicated_email       = @user.dup
-        user_duplicated_email.email = @user.email.upcase
-        user_duplicated_email.save
-      end
-      it { is_expected.to_not be_valid }
+    it "should be unique" do
+      duplicate_user = @user.dup
+      duplicate_user.email = @user.email.upcase
+      @user.save
+      expect(duplicate_user).to_not be_valid
     end
 
-    describe "when is provided with mixed case" do
-      let(:mixed_email) { "TricuLi@mAiL.coM" }
-
-      it "should be downcased before it is saved" do
-        @user.email = mixed_email
-        @user.save
-        expect(@user.reload.email).to eq(mixed_email.downcase)
-      end
+    it "should be saved in lowercase characters" do
+      funky_case_email = "TriCuLiTo@mAiL.coM"
+      @user.email = funky_case_email
+      @user.save
+      expect(@user.email).to eq(funky_case_email.downcase)
     end
   end
 
-  describe "when password is too short" do
-    before { @user.password = @user.password_confirmation = "triculi" }
-    it     { is_expected.to_not be_valid }
-  end
-
-  describe "authenticated?" do
-    it "should return false for a user with nil digest" do
-      expect(@user.authenticated?('')).to be(false)
+  describe "user password" do
+    it "should not be too short" do
+      @user.password = @user.password_confirmation = "x" * 7
+      expect(@user).to_not be_valid
     end
   end
+
+  # describe "authenticated?" do
+  #   it "should return false for a user with nil digest" do
+  #     expect(@user.authenticated?('')).to be(false)
+  #   end
+  # end
 end

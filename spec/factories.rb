@@ -3,7 +3,6 @@ FactoryGirl.define do
     first_name            "Julito"
     last_name             "Triculi"
     email                 "triculito@mail.com"
-    password              "worldtriculi"
-    password_confirmation "worldtriculi"
+    password_digest       User.digest('password')
   end
 end
