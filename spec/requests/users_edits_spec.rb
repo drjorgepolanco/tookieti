@@ -4,7 +4,7 @@ RSpec.describe "UsersEdits", type: :request do
 
   before { @user = FactoryGirl.create(:user) }
 
-  it "is not successful with wrong information" do
+  it "is not successful with wrong info" do
     log_in_as(@user)
     get edit_user_path(@user)
     expect(response).to render_template(:edit)
@@ -15,13 +15,13 @@ RSpec.describe "UsersEdits", type: :request do
     expect(response).to render_template(:edit)
   end
 
-  it "is successful with the correct information" do
-    log_in_as(@user)
+  it "is successful with the correct info and provide friendly forwarding" do
     get edit_user_path(@user)
-    expect(response).to render_template(:edit)
+    log_in_as(@user)
+    expect(response).to redirect_to(edit_user_path(@user))
     first_name = "Julito"
     last_name  = "Triculi"
-    email      = "triculito@gmail.com"
+    email      = "triculito@mail.com"
     patch user_path(@user), user: { name:          first_name,
                                     last_name:      last_name,
                                     email:              email,

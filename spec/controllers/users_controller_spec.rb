@@ -17,6 +17,11 @@ RSpec.describe UsersController, type: :controller do
     expect(response).to render_template(:new)
   end
 
+  it "should redirect to index when the user is not logged in" do
+    get :index
+    expect(response).to redirect_to(login_path)
+  end
+
   describe "when user is not logged in" do
     it "should redirect edit" do
       get :edit, id: @user

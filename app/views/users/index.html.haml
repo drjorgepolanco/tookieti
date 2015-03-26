@@ -1,0 +1,10 @@
+- provide(:title, "Users")
+
+.row
+  .large-12.columns
+    .users.large-3.columns
+      - @users.each do |user|
+        .user-gravatar
+          = gravatar(user, size: 200)
+        .user-name.text-center
+          = link_to full_name(user), user
