@@ -1,10 +1,16 @@
 - provide(:title, "Users")
 
 .row
+  .large-12.columns.text-center
+    %h1 Users
+  .large-12.columns.pagination-centered
+    = will_paginate @collection, renderer: FoundationPagination::Rails
   .large-12.columns
-    .users.large-3.columns
-      - @users.each do |user|
+    - @users.each do |user|
+      .users.large-3.columns
         .user-gravatar
           = gravatar(user, size: 200)
         .user-name.text-center
           = link_to full_name(user), user
+  .large-12.columns.pagination-centered
+    = will_paginate @collection, renderer: FoundationPagination::Rails

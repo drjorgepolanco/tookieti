@@ -19,9 +19,9 @@ RSpec.describe "UsersEdits", type: :request do
     get edit_user_path(@user)
     log_in_as(@user)
     expect(response).to redirect_to(edit_user_path(@user))
-    first_name = "Julito"
-    last_name  = "Triculi"
-    email      = "triculito@mail.com"
+    first_name = @user.first_name
+    last_name  = @user.last_name
+    email      = @user.email
     patch user_path(@user), user: { name:          first_name,
                                     last_name:      last_name,
                                     email:              email,
