@@ -4,12 +4,7 @@
   .large-6.medium-6.large-offset-3.medium-offset-3.columns
     %h1.text-center Update your Profile
     = form_for(@user) do |f|
-      = render "shared/error_messages"
-      = f.text_field     :first_name,            placeholder: "First Name",       class: "radius"
-      = f.text_field     :last_name,             placeholder: "Last Name",        class: "radius"
-      = f.email_field    :email,                 placeholder: "Email",            class: "radius"
-      = f.password_field :password,              placeholder: "Password",         class: "radius"
-      = f.password_field :password_confirmation, placeholder: "Confirm Password", class: "radius"
+      = render "fields", f: f
       = f.submit "Save Changes", class: "button expand alert radius"
     .gravatar_edit
       = gravatar(@user)
