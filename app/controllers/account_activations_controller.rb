@@ -4,9 +4,8 @@ class AccountActivationsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && 
       !user.activated? && 
-       user.authenticated?(:activation,     params[:id])
-       user.update_attribute(:activated,    true)
-       user.update_attribute(:activated_at, Time.zone.now)
+       user.authenticated?(:activation, params[:id])
+       user.activate
        log_in(user)
        flash[:success] = "Your account is now activated!"
        redirect_to(user)
