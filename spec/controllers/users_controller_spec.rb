@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
 
   before do 
-    @user       = FactoryGirl.create(:user)
+    @user       = FactoryGirl.create(:user,
+                                     admin:           true)
     @other_user = FactoryGirl.create(:user, 
                                      first_name:      "Joselito",
                                      last_name:       "Trediente",
@@ -49,11 +50,24 @@ RSpec.describe UsersController, type: :controller do
     it "should redirect update" do
       log_in_as(@other_user)
       patch :update, id: @user, user: { first_name: @user.first_name, 
-                                        last_name: @user.last_name,
-                                        email: @user.email 
+                                        last_name:  @user.last_name,
+                                        email:      @user.email 
                                       }
       expect(flash).to be_empty
       expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe "destroying users" do
+    it "should redirect when user is not logged in" do
+      expect{ delete :destroy, id: @user }.to_not change{ User.count }
+      expect(response).to redirect_to(login_url)
+    end
+
+    it "should redirect when user is not admin" do
+      log_in_as(@other_user)
+      expect{ delete :destroy, id: @user }.to_not change{ User.count }
+      expect(response).to redirect_to(root_url)
     end
   end
 end
