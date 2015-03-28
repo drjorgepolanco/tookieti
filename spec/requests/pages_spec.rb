@@ -5,12 +5,12 @@ RSpec.describe "Pages", type: :request do
   describe "Home page" do
     before { visit root_path }
 
-    it "should have the content 'Tookieti'" do
-      expect(page).to have_content("Tookieti")
+    it "should have the content 'TookieTi!'" do
+      expect(page).to have_content("TookieTi!")
     end
 
     it "should have title 'Tookieti'" do
-      expect(page).to have_title("Tookieti")
+      expect(page).to have_title("TookieTi!")
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe "Pages", type: :request do
       expect(page).to have_content('About')
     end
 
-    it "should have title 'About | Tookieti'" do
+    it "should have title 'About | TookieTi!'" do
       expect(page).to have_title(full_title("About"))
     end
   end

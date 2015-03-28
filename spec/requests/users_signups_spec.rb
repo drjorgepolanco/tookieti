@@ -30,8 +30,8 @@ RSpec.describe "UsersSignups", type: :request do
           password_confirmation: "worldtriculi"
         }
       end.to change{ User.count }.from(0).to(1)
-      expect(response).to render_template(:show)
-      expect(flash[:success]).to_not be(nil)
+      # expect(response).to render_template(:show)
+      expect(flash[:info]).to_not be(nil)
     end
   end
 end
