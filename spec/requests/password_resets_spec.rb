@@ -10,34 +10,52 @@ RSpec.describe "PasswordResets", type: :request do
     it "should not work with invalid info or expired token and should work with the opposite" do
       get new_password_reset_path
       expect(response).to render_template(:new)
+
       # invalid email
       post password_resets_path, password_reset: { email: "" }
       expect(flash).to_not be(nil)
       expect(response).to render_template(:new)
+
       # valid email
       post password_resets_path, password_reset: { email: @user.email }
       # expect(@user.reload.reset_digest).to_not eq(@user.reset_digest)
       expect(ActionMailer::Base.deliveries.size).to eq(1)
       expect(flash).to_not be(nil)
       expect(response).to redirect_to(root_url)
+
       # password reset form
       user = assigns(:user)
+
       # wrong email
       get edit_password_reset_path(user.reset_token, email: "")
       expect(response).to redirect_to(root_url)
+
       # inactive user
       user.toggle!(:activated)
       get edit_password_reset_path(user.reset_token, email: user.email)
       expect(response).to redirect_to(root_url)
       user.toggle!(:activated)
+
       # right email, wrong token
       get edit_password_reset_path('tukitoken', email: user.email)
       expect(response).to redirect_to(root_url)
+
       # right email, right token
       get edit_password_reset_path(user.reset_token, email: user.email)
       expect(response).to render_template(:edit)
       # expect(response).to_a include("input[name=email][type=hidden][value=?]")
+
       # invalid password & confirmation
+      patch password_reset_path(user.reset_token),
+            email: user.email,
+            user: {
+              password:              "worldtriculi",
+              password_confirmation: "triculito"
+            }
+      # expect(page).to have_selector('div#error_explanation')
+      expect(flash).to_not be(nil)
+
+      # blank password
       patch password_reset_path(user.reset_token),
             email: user.email,
             user: { 
@@ -46,6 +64,7 @@ RSpec.describe "PasswordResets", type: :request do
             }
       expect(flash).to_not be(nil)
       expect(response).to render_template(:edit)
+
       # valid password & confirmation
       patch password_reset_path(user.reset_token),
             email: user.email,
