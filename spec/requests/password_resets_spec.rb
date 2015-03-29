@@ -18,7 +18,7 @@ RSpec.describe "PasswordResets", type: :request do
 
       # valid email
       post password_resets_path, password_reset: { email: @user.email }
-      # expect(@user.reload.reset_digest).to_not eq(@user.reset_digest)
+      expect(@user.reload.reset_digest).to eq(@user.reset_digest)
       expect(ActionMailer::Base.deliveries.size).to eq(1)
       expect(flash).to_not be(nil)
       expect(response).to redirect_to(root_url)
@@ -43,7 +43,7 @@ RSpec.describe "PasswordResets", type: :request do
       # right email, right token
       get edit_password_reset_path(user.reset_token, email: user.email)
       expect(response).to render_template(:edit)
-      # expect(response).to_a include("input[name=email][type=hidden][value=?]")
+      expect(response.body).to include('<input type="hidden" name="email" id="email" value="triculito@mail.com" />')
 
       # invalid password & confirmation
       patch password_reset_path(user.reset_token),
@@ -52,7 +52,7 @@ RSpec.describe "PasswordResets", type: :request do
               password:              "worldtriculi",
               password_confirmation: "triculito"
             }
-      # expect(page).to have_selector('div#error_explanation')
+      expect(response.body).to include("<div id='error_explanation'>")
       expect(flash).to_not be(nil)
 
       # blank password
