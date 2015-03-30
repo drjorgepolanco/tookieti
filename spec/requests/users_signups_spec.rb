@@ -82,5 +82,3 @@ RSpec.describe "UsersSignups", type: :request do
     end
   end
 end
-
-
