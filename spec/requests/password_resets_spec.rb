@@ -8,7 +8,6 @@ RSpec.describe "PasswordResets", type: :request do
   end
 
   describe "requesting password reset" do
-
     before do
       get new_password_reset_path
       expect(response).to render_template(:new)
@@ -34,7 +33,6 @@ RSpec.describe "PasswordResets", type: :request do
   end
 
   describe "getting the password reset form" do
-
     before do
       get new_password_reset_path
       post password_resets_path, password_reset: { email: @user.email }
@@ -88,7 +86,6 @@ RSpec.describe "PasswordResets", type: :request do
   end
 
   describe "creating the new password" do
-
     before do
       get new_password_reset_path
       post password_resets_path, password_reset: { email: @user.email }

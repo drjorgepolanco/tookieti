@@ -41,7 +41,6 @@ RSpec.describe "UsersSignups", type: :request do
     end
 
     context "right after account activation email has been sent" do
-      
       before do
         @user = assigns(:user)
       end

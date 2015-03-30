@@ -11,7 +11,6 @@ RSpec.describe "Users Logins", type: :request do
   end
 
   context "when filling the form" do
-
     before do
       get login_path
     end
@@ -34,7 +33,6 @@ RSpec.describe "Users Logins", type: :request do
     end
 
     context "when info is valid" do
-      
       before {
         post login_path, session: { 
           email: @user.email, 
@@ -52,7 +50,6 @@ RSpec.describe "Users Logins", type: :request do
       end
 
       context "followed by logout" do
-
         before do
           expect(response).to redirect_to(@user)
           follow_redirect!
@@ -65,7 +62,6 @@ RSpec.describe "Users Logins", type: :request do
         end
 
         context "when user logs out twice from different browsers" do
-          
           before { delete logout_path }
 
           it "should keep the user logged out" do
