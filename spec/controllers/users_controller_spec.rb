@@ -58,6 +58,17 @@ RSpec.describe UsersController, type: :controller do
       expect(flash).to be_empty
       expect(response).to redirect_to(root_path)
     end
+
+    it "should not allow the admin attribute to be edited via the web" do
+      log_in_as(@other_user)
+      expect(@other_user.admin?).to be(false)
+      patch :update, id: @other_user, user: {
+        password:              "password",
+        password_confirmation: "password",
+        admin:                 true
+      }
+      expect(@other_user.reload.admin?).to be(false)
+    end
   end
 
   describe "destroying users" do
