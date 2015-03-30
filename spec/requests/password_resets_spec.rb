@@ -77,4 +77,23 @@ RSpec.describe "PasswordResets", type: :request do
       expect(response).to redirect_to(user)
     end
   end
+
+  context "when token is expired" do
+    it "should include the word expired" do
+      get new_password_reset_path
+      post password_resets_path, password_reset: { email: @user.email }
+
+      @user = assigns(:user)
+      @user.update_attribute(:reset_sent_at, 3.hours.ago)
+      patch password_reset_path(@user.reset_token),
+            email: @user.email,
+            user: { 
+              password:           "password",
+              password_confirmation: "password"
+            }
+      expect(response).to be_redirect
+      follow_redirect!
+      expect(response.body).to include('expired')
+    end
+  end
 end
