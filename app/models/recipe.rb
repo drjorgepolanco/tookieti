@@ -6,4 +6,8 @@ class Recipe < ActiveRecord::Base
   validates  :steps,       presence: true, length: { minimum: 10  }
   validates  :user_id,     presence: true
   default_scope -> { order(updated_at: :desc) }
+
+  def total_likes
+    self.likes.size
+  end
 end
