@@ -12,63 +12,87 @@
       %span
 %aside.left-off-canvas-menu
   %ul.off-canvas-list
-    %li
-      %label Recetas
-    %li
-      = link_to new_recipe_path do
-        %i.fa.fa-plus-circle.fa-fw 
-        Crear Receta
-    %li
-      = link_to recipe_path do
-        %i.fa.fa-cutlery.fa-fw
-        Ver Recetas  
-    %li
-      %label Cocinas
-    %li
-      = link_to new_cuisine_path do
-        %i.fa.fa-plus-circle.fa-fw
-        Crear Cocina
-    %li
-      = link_to cuisines_path do
-        %i.fa.fa-flag.fa-fw
-        Ver Cocinas
-    %li
-      %label Ingredientes
-    %li
-      = link_to new_ingredient_path do
-        %i.fa.fa-plus-circle.fa-fw
-        Crear Ingrediente
-    %li
-      = link_to ingredients_path do
-        %i.fa.fa-shopping-cart.fa-fw
-        Ver Ingredientes
+    - if logged_in?
+      %li
+        %label Recetas
+      %li
+        = link_to new_recipe_path do
+          %i.fa.fa-plus-circle.fa-fw 
+          Crear Receta
+      %li
+        = link_to recipes_path do
+          %i.fa.fa-cutlery.fa-fw
+          Ver Recetas  
+      %li
+        %label Cocinas
+      %li
+        = link_to "#" do
+          %i.fa.fa-plus-circle.fa-fw
+          Crear Cocina
+      %li
+        = link_to "#" do
+          %i.fa.fa-flag.fa-fw
+          Ver Cocinas
+      %li
+        %label Ingredientes
+      %li
+        = link_to "#" do
+          %i.fa.fa-plus-circle.fa-fw
+          Crear Ingrediente
+      %li
+        = link_to "#" do
+          %i.fa.fa-shopping-cart.fa-fw
+          Ver Ingredientes
+    - else
+      %li
+        %label Todas las Recetas
+      %li
+        = link_to recipes_path do
+          %i.fa.fa-cutlery.fa-fw
+          Ver Recetas  
+      %li
+        %label Por Cocina
+      %li
+        = link_to "#" do
+          %i.fa.fa-flag.fa-fw
+          Ver Cocinas
+      %li
+        %label Por Ingredientes
+      %li
+        = link_to "#" do
+          %i.fa.fa-shopping-cart.fa-fw
+          Ver Ingredientes
 %aside.right-off-canvas-menu
   %ul.off-canvas-list
-    %li
-      %label Mi Cuenta
-    %li
-      = link_to "#" do
-        %i.fa.fa-user.fa-fw 
-        Perfil
-    %li
-      = link_to "#" do
-        %i.fa.fa-user-plus.fa-fw 
-        Registro
-    %li
-      = link_to "#" do
-        %i.fa.fa-sign-in.fa-fw 
-        Entrar
-    %li
-      = link_to "#" do
-        %i.fa.fa-sign-out.fa-fw 
-        Salir
-    %li
-      %label Mi Gente
-    %li
-      = link_to "#" do
-        %i.fa.fa-users.fa-fw 
-        Me Siguen
-    %li
-      = link_to "#" do
-        %i.fa.fa-users.fa-fw
-        Los Sigo
+    - if logged_in?
+      %li
+        %label Mi Gente
+      %li
+        = link_to "#" do
+          %i.fa.fa-users.fa-fw 
+          Me Siguen
+      %li
+        = link_to "#" do
+          %i.fa.fa-users.fa-fw
+          Los Sigo
+      %li
+        %label Mi Cuenta
+      %li
+        = link_to user_path(@user) do
+          %i.fa.fa-user.fa-fw 
+          Mi Perfil
+      %li
+        = link_to logout_path do
+          %i.fa.fa-sign-out.fa-fw 
+          Salir
+    - else
+      %li
+        %label Cuenta
+      %li
+        = link_to login_path do
+          %i.fa.fa-sign-in.fa-fw 
+          Entrar
+      %li
+        = link_to "#" do
+          %i.fa.fa-user-plus.fa-fw 
+          Registro

@@ -45,8 +45,8 @@ RSpec.describe "Users Logins", type: :request do
         expect(response).to redirect_to(@user)
         follow_redirect!
         expect(response).to render_template(:show)
-        expect(response.body).to include("Log out")
-        expect(response.body).to include("Profile")
+        expect(response.body).to include("Salir")
+        expect(response.body).to include("Perfil")
       end
 
       context "followed by logout" do
@@ -66,8 +66,8 @@ RSpec.describe "Users Logins", type: :request do
 
           it "should keep the user logged out" do
             follow_redirect!
-            expect(response.body).to include("Log In")
-            expect(response.body).to include("Sign Up")
+            expect(response.body).to include("Entrar")
+            expect(response.body).to include("Registro")
           end          
         end
       end

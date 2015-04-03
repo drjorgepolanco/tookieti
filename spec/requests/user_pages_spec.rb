@@ -6,9 +6,9 @@ RSpec.describe "UserPages", type: :request do
   describe "signup page" do
     before { visit signup_path }
 
-    it { is_expected.to have_content("Sign Up")              }
-    it { is_expected.to have_title(full_title("Sign Up"))    }
-    it { is_expected.to have_link('Log In Now!', login_path) }
+    it { is_expected.to have_content("Registro")              }
+    it { is_expected.to have_title(full_title("Registro"))    }
+    it { is_expected.to have_link('Entra ahora!', login_path) }
   end
 
   describe "profile page" do
@@ -21,7 +21,7 @@ RSpec.describe "UserPages", type: :request do
   end
 
   describe "the process of signing up" do
-    let(:submit) { "Create Account"  }
+    let(:submit) { "Crear cuenta"    }
     before       { visit signup_path }
 
     describe "with valid info" do
