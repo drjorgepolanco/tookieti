@@ -1,8 +1,8 @@
-- if @user.errors.any?
+- if obj.errors.any?
   #error_explanation
-    .alert-box.alert.radius
-      El formulario contiene #{pluralize(@user.errors.count, 'error')}.
-    %ul
-      = @user.errors.full_messages.each do |msg|
-        %li= msg
+    .alert-box.alert
+      The form contains #{pluralize(obj.errors.count, 'error')}.
+      %ul
+        = obj.errors.full_messages.each do |msg|
+          %li= msg
 

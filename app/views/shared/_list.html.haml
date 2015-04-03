@@ -1,0 +1,18 @@
+- obj.each do |recipe|
+  %a{:href => "#{recipe_path(recipe)}"}
+    .panel.recipe-index.center
+      .row
+        .large-7.small-7.columns.recipe-img
+          = image_tag(recipe.picture.url) if recipe.picture?
+        .large-5.small-5.columns.recipe-text
+          %h4= recipe.title
+          %h6= full_name(recipe.user)
+          %h6
+            = link_to like_recipe_path(recipe), method: :post do
+              %i.fa.fa-heart.fa-fw
+              = recipe.total_likes
+          %p
+            %small
+              Updated
+              = time_ago_in_words(recipe.updated_at) 
+              ago.
