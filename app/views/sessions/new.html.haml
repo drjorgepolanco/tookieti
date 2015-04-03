@@ -1,20 +1,21 @@
-- provide(:title, "Log In")
+- provide(:title, "Entrar")
 
 .row
   .large-6.medium-6.large-offset-3.medium-offset-3.columns
-    %h1.text-center Reset your Password
+    %h1.text-center Entra a tu cuenta
     = form_for(:session, url: login_path) do |f|
 
       = f.email_field    :email,    placeholder: "Email",    class: "radius"
       = f.password_field :password, placeholder: "Password", class: "radius"
       = f.label :remember_me, class: "checkbox" do
         = f.check_box :remember_me
-        %span Remember me |
-        %span.forgot_pass= link_to "Forgot password", new_password_reset_path
+        %span Recuérdame |
+        %span.forgot_pass
+          = link_to "Olvidé mi password", new_password_reset_path
 
-      = f.submit "Log In", class: "button expand radius"
+      = f.submit "Entrar", class: "button expand radius"
     %p 
-      New User?
+      Nuevo usuario?
       %br/
-      = link_to('Sign Up Now!', signup_path)
+      = link_to('Regístrate!', signup_path)
 

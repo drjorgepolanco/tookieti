@@ -11,10 +11,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "We sent you an email with password reset instructions."
+      flash[:info] = "Te enviamos un email con instrucciones para resetar tu password."
       redirect_to(root_url)
     else
-      flash.now[:alert] = "Sorry, we could not find that email address."
+      flash.now[:alert] = "Perdóname, no encontré ese email."
       render('new')
     end
   end
@@ -24,11 +24,11 @@ class PasswordResetsController < ApplicationController
 
   def update
     if password_blank?
-      flash.now[:alert] = "The password can't be blank."
+      flash.now[:alert] = "La contraseña no puede quedar vacía."
       render("edit")
     elsif @user.update_attributes(user_params)
       log_in(@user)
-      flash[:success] = "The password has been reset."
+      flash[:success] = "Tu password ha sido reseteado."
       redirect_to(@user)
     else
       render("edit")

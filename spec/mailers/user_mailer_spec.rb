@@ -11,9 +11,9 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it "renders the headers" do
-      expect(@mail.subject).to eq("TookieTi! Activate your Account!")
+      expect(@mail.subject).to eq("CocinitApp! Activa tu cuenta!")
       expect(@mail.to).to      eq([@user.email])
-      expect(@mail.from).to    eq(["tookietiapp@gmail.com"])
+      expect(@mail.from).to    eq(["cocinitapp@gmail.com"])
     end
 
     it "renders the body" do
@@ -32,9 +32,9 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it "renders the headers" do
-      expect(@mail.subject).to eq("TookieTi! Reset your Password!")
+      expect(@mail.subject).to eq("CocinitApp! Resetea tu password!")
       expect(@mail.to).to      eq([@user.email])
-      expect(@mail.from).to    eq(["tookietiapp@gmail.com"])
+      expect(@mail.from).to    eq(["cocinitapp@gmail.com"])
     end
 
     it "renders the body" do

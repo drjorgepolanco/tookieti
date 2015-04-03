@@ -1,16 +1,29 @@
 !!!
-%html{:lang => "en"}
+%html{:lang => "es"}
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title= content_for?(:title) ? full_title(yield(:title))  : "TookieTi!"
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "vendor/modernizr"
+    %title= content_for?(:title) ? full_title(yield(:title))  : "CocinitApp!"
+    = stylesheet_link_tag "application"
+    %link{rel: "stylesheet", 
+          href: "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"}/
+    %link{:rel => "stylesheet", 
+          :href => "http://fonts.googleapis.com/css?family=Playfair+Display:700"}/
     = csrf_meta_tags
     = render 'layouts/shim'
   %body
-    = render "layouts/header"
-    - flash.each do |msg_type, msg|
-      = content_tag(:div, msg, class: "alert-box #{msg_type}")
-    = yield
+    .row
+      .large-6.large-offset-3.medium-6.medium-offset-3.small-12.columns
+        #main.row.off-canvas-wrap{"data-offcanvas" => ""}
+          .inner-wrap
+            = render "layouts/header"
+            %section.main-section
+              .row
+                .large-12.columns
+                  = render "layouts/messages"
+              .large-12.columns
+                = yield
+            %a.exit-off-canvas
+    = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag "application"
+    / = javascript_include_tag "application", 'data-turbolinks-track' => true

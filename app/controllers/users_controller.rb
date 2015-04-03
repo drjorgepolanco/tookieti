@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Please, check your email to activate your account."
+      flash[:info] = "Por favor, chequea tu email para activar tu cuenta."
       redirect_to(root_url)
     else
       render('new')
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Your profile has been successfully updated."
+      flash[:success] = "Tu perfil fue actualizado satisfactoriamente."
       redirect_to(@user)
     else
       render('edit')
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "The user has been deleted."
+    flash[:success] = "El usuario ha sido borrado."
     redirect_to(users_url)
   end
 
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:alert] = "Please, log in."
+        flash[:alert] = "Por favor, entra a tu cuenta."
         redirect_to(login_url)
       end
     end

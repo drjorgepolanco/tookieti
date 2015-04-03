@@ -1,14 +1,14 @@
-- provide(:title, "Sign Up")
+- provide(:title, "Registro")
 
 .row
   .large-6.medium-6.large-offset-3.medium-offset-3.columns
-    %h1.text-center Sign Up
+    %h1.text-center Registro
     = form_for(@user) do |f|
       = render "fields", f: f
-      = f.submit "Create Account", class: "button success expand radius"
+      = f.submit "Crear cuenta", class: "button success expand radius"
     %p 
-      Already a User?
+      Ya eres usuario?
       %br/
-      = link_to('Log In Now!', login_path)
+      = link_to('Entra ahora!', login_path)
 
 

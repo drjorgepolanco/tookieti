@@ -1,2 +1,31 @@
-%h1 TookieTi!
-%p Find me in app/views/pages/home.html.haml
+.intro
+  %br/
+  %a.button.expand.alert{href: "#"} Reg&iacute;strate!
+
+.row.recientes
+
+  .large-12.columns.item
+    = render "shared/title", title: "Recetas"
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque beatae architecto laborum quibusdam officiis illo rem sed corporis asperiores. Inventore vel at praesentium repellendus quisquam beatae. Ullam laboriosam eum, earum.
+    %ul.button-group.even-2
+      %li
+        %a.button{href: "#{recipes_path}"}
+          Ver Recetas
+      %li
+        %a.button.success{href: "#{new_recipe_path}"}
+          Crear Receta
+
+  .large-12.columns.item
+    = render "shared/title", title: "Cocineros"
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit delectus explicabo sequi reprehenderit ab quasi porro quae, quo neque, aliquid magni. Officiis laudantium dicta voluptatum id, nesciunt. Fugit, distinctio, illum.
+    %a.button.expand{href: ""}
+      Conocer Cocineros
+
+  .large-12.columns.item
+    = render "shared/title", title: "Cocinas"
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint impedit deserunt eum illo dolore, culpa itaque quasi sunt ipsam ipsum provident eius! Consequuntur ea consectetur nemo placeat, voluptates alias vitae.
+    %a.button.expand{href: ""}
+      Explorar Cocinas

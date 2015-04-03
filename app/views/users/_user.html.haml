@@ -5,4 +5,4 @@
     = link_to full_name(user), user
     - if current_user.admin? && !current_user?(user)
       |
-      = link_to "delete", user, method: :delete, data: { confirm: "Are your sure?" }
+      = link_to "borrar", user, method: :delete, data: { confirm: "Estás seguro?" }

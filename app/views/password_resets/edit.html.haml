@@ -1,12 +1,12 @@
-- provide(:title, "Reset Password")
+- provide(:title, "Resetea tu password")
 
 .row
   .large-6.medium-6.large-offset-3.medium-offset-3.columns
-    %h1.text-center Write your new Password
+    %h1.text-center Escribe tu nuevo password
     = form_for(@user, url: password_reset_path(params[:id])) do |f|
       = render "shared/error_messages"
       = hidden_field_tag :email, @user.email
-      = f.password_field :password,              placeholder: "New Password",     class: "radius"
-      = f.password_field :password_confirmation, placeholder: "Confirm Password", class: "radius"
-      = f.submit "Update Password", class: "button alert expand radius"
+      = f.password_field :password,              placeholder: "Nuevo password",       class: "radius"
+      = f.password_field :password_confirmation, placeholder: "Confirma el password", class: "radius"
+      = f.submit "Crear password", class: "button alert expand radius"
 

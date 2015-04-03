@@ -7,10 +7,10 @@ class AccountActivationsController < ApplicationController
        user.authenticated?(:activation, params[:id])
        user.activate
        log_in(user)
-       flash[:success] = "Your account is now activated!"
+       flash[:success] = "Tu cuenta ha sido activada!"
        redirect_to(user)
      else
-      flash[:alert] = "The activation link is invalid. Please, try again."
+      flash[:alert] = "El link de activación es inválido. Por favor, intenta de nuevo."
       redirect_to(root_url)
     end
   end

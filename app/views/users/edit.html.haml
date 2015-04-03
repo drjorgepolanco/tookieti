@@ -1,11 +1,11 @@
-- provide(:title, "Profile Update")
+- provide(:title, "Actualiza tu perfil")
 
 .row
   .large-6.medium-6.large-offset-3.medium-offset-3.columns
-    %h1.text-center Update your Profile
+    %h1.text-center Actualiza tu perfil
     = form_for(@user) do |f|
       = render "fields", f: f
-      = f.submit "Save Changes", class: "button expand alert radius"
+      = f.submit "Guardar cambios", class: "button expand alert radius"
     .gravatar_edit
       = gravatar(@user)
       %a{href: "http://gravatar.com/emails", target: "_blank"}
