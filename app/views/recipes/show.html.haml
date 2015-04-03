@@ -1,2 +1,55 @@
-%h1 Recipes#show
-%p Find me in app/views/recipes/show.html.haml
+- provide(:title, @recipe.title)
+
+.recipe-show
+  .row.recipe-picture-container
+    = image_tag(@recipe.picture.url, class: "recipe-picture") if @recipe.picture?
+  .row
+    .large-12.columns
+      = render "shared/title", title: @recipe.title
+  .row
+    .large-3.small-3.columns
+      = gravatar(@recipe.user)
+    .large-6.small-6.columns
+      %h3.user
+        = full_name(@recipe.user)
+    .large-3.small-3.columns.like-heart
+      = link_to like_recipe_path(@recipe), method: :post do
+        %i.fa.fa-heart.fa-3x
+        %br/
+        = @recipe.total_likes
+  %hr/
+  .row
+    .large-12.medium-12.columns
+      %h3.subtitle Tiempo de Preparación
+      = render @recipe.prep_time
+  .row
+    .large-12.medium-12.columns
+      = render @recipe.cocinas
+  %hr/
+  %p
+    %h3.subtitle Descripción
+    = simple_format(@recipe.description)
+  %hr/
+  .row
+    .large-12.medium-12.columns
+      %h3.subtitle Ingredientes
+      = render @recipe.ingredients
+  %hr/
+  %p
+    %h3.subtitle Instrucciones
+    = simple_format(@recipe.steps)
+  %hr/
+  %p.timestamps
+    Created:
+    = time_ago_in_words(@recipe.created_at) 
+    ago.
+    %br/ 
+    Updated:
+    = time_ago_in_words(@recipe.updated_at)
+    ago. 
+  %p.left
+    = link_to edit_recipe_path do
+      %i.fa.fa-pencil-square-o.fa-2x
+  %p.right
+    = link_to recipes_path do
+      %i.fa.fa-arrow-circle-o-left.fa-2x

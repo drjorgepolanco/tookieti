@@ -1,2 +1,20 @@
-%h1 Recipes#new
-%p Find me in app/views/recipes/new.html.haml
+- provide(:title, "Crear Receta")
+
+.row
+  = render "shared/error_messages", obj: @recipe
+  .large-12.columns
+    = render "shared/title", title: "Crear Receta"
+    %hr/
+    = form_for(@recipe, html: { multipart: true }) do |f|
+      = render "fields", f: f
+      = f.submit "Crear receta", class: "button expand"
+    %p.right
+      = link_to recipes_path do
+        %i.fa.fa-arrow-circle-o-left.fa-2x
+
+:coffeescript
+  $('#recipe_picture').bind 'change', ->
+      size_in_megabytes = @files[0].size / 1024 / 1024
+      if size_in_megabytes > 5
+        alert 'La imagen debe ser menor a 5MB.'
+      return

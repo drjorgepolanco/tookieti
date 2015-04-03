@@ -1,2 +1,14 @@
-%h1 Recipes#index
-%p Find me in app/views/recipes/index.html.haml
+- provide(:title, "Recetas")
+
+= render "shared/title", title: "Recetas"
+
+%hr/
+.pagination-centered
+  = will_paginate @collection, renderer: FoundationPagination::Rails
+%br/
+
+= render "shared/list", obj: @recipes
+
+.pagination-centered
+  = will_paginate @collection, renderer: FoundationPagination::Rails
+%br/
