@@ -78,11 +78,15 @@
       %li
         %label Mi Cuenta
       %li
-        = link_to user_path(@user) do
+        = link_to current_user do
           %i.fa.fa-user.fa-fw 
           Mi Perfil
       %li
-        = link_to logout_path do
+        = link_to edit_user_path(current_user) do
+          %i.fa.fa-user.fa-fw 
+          Editar Perfil
+      %li
+        = link_to logout_path, method: :delete do
           %i.fa.fa-sign-out.fa-fw 
           Salir
     - else
@@ -93,6 +97,10 @@
           %i.fa.fa-sign-in.fa-fw 
           Entrar
       %li
-        = link_to "#" do
+        = link_to signup_path do
           %i.fa.fa-user-plus.fa-fw 
           Registro
+      %li
+        = link_to about_path do
+          %i.fa.fa-users.fa-fw 
+          Nosotros

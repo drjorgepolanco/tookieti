@@ -9,6 +9,8 @@
           href: "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"}/
     %link{:rel => "stylesheet", 
           :href => "http://fonts.googleapis.com/css?family=Playfair+Display:700"}/
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tags
     = render 'layouts/shim'
   %body
@@ -24,6 +26,4 @@
               .large-12.columns
                 = yield
             %a.exit-off-canvas
-    = javascript_include_tag "vendor/modernizr"
-    = javascript_include_tag "application"
-    / = javascript_include_tag "application", 'data-turbolinks-track' => true
+    

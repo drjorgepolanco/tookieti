@@ -26,11 +26,11 @@ RSpec.describe "UserPages", type: :request do
 
     describe "with valid info" do
       before do
-        fill_in "First Name",       with: "Julito"
-        fill_in "Last Name",        with: "Triculi"
-        fill_in "Email",            with: "triculito@mail.com"
-        fill_in "Password",         with: "worldtriculi"
-        fill_in "Confirm Password", with: "worldtriculi"
+        fill_in "Nombre",               with: "Julito"
+        fill_in "Apellido",             with: "Triculi"
+        fill_in "Email",                with: "triculito@mail.com"
+        fill_in "Password",             with: "worldtriculi"
+        fill_in "Confirma el password", with: "worldtriculi"
       end
 
       it "should create a new user" do
