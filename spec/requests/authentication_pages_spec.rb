@@ -20,7 +20,7 @@ RSpec.describe "AuthenticationPages", type: :request do
         before { click_button "Entrar" }
 
         it { is_expected.to have_title('Entrar') }
-        it { is_expected.to have_selector('div.alert-box', text: "The form") }
+        it { is_expected.to have_selector('div.alert-box') }
       end
 
       describe "when information is valid" do
