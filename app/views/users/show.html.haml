@@ -5,3 +5,14 @@
     %section.large-12.columns.text-center
       = gravatar(@user)
       %h3= full_name(@user)
+- if @user.recipes.any?
+  %row
+    .pagination-centered
+      = will_paginate @recipes, renderer: FoundationPagination::Rails
+    %br/
+
+    = render "shared/list", obj: @recipes
+
+    .pagination-centered
+      = will_paginate @recipes, renderer: FoundationPagination::Rails
+    %br/

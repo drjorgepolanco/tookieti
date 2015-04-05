@@ -102,4 +102,17 @@ RSpec.describe User, type: :model do
       expect(@user.authenticated?(:remember, '')).to be(false)
     end
   end
+
+  describe "associated recipes" do
+    context "when user is removed" do
+      it "should die with the user" do
+        @user.save
+        @user.recipes.create!(title:       "Croquetas de Pollo",
+                              description: "Lorem ipsum dolor sit amet",
+                              steps:       "Lorem ipsum dolor sit amet",
+                              prep_time:   30)
+        expect{@user.destroy}.to change{ Recipe.count }.by(-1)
+      end
+    end
+  end
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
+  has_many :recipes, dependent: :destroy
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :first_name, presence: true, length: { maximum: 40 }
   validates :last_name,  presence: true, length: { maximum: 40 }

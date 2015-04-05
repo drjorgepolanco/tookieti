@@ -20,3 +20,20 @@ User.create!(first_name:            "Jorge",
                activated:             true,
                activated_at:          Time.zone.now)
 end
+
+users = User.order(:created_at).take(6)
+
+50.times do
+  title       = "#{Faker::Lorem.word} #{Faker::Lorem.word}"
+  description = Faker::Lorem.sentence
+  steps       = Faker::Lorem.sentence(3)
+  # prep_time   = Faker::Number.digit
+  picture     = File.open(File.join(Rails.root, 'spec/fixtures/files/recipe.jpg'))
+  users.each do |user|
+    user.recipes.create!(title:       title,
+                         description: description,
+                         steps:       steps,
+                         # prep_time:   prep_time,
+                         picture:     picture)
+  end
+end
