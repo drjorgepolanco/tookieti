@@ -1,4 +1,5 @@
 @import "foundation_and_overrides"
+@import "main"
 
 #user_area
   padding-top: 1em
@@ -7,11 +8,14 @@
     border-radius: 50%
 
 .users
-  .user-gravatar
-    padding-top: 1em
-    padding-bottom: 1em
-    img
-      margin: 0 auto
-      display: block
-  .user-name
-    font-weight: bold
+  padding: 0
+  .user-outer
+    padding: 0.5em
+    .user-inner
+      @extend %shadows
+      .user-gravatar
+        @extend %shadows
+      .user-info
+        text-align: center
+        font-weight: bold
+

@@ -1,9 +1,11 @@
 .users.large-6.columns
-  .user-gravatar
-    = gravatar(user, size: 200)
-  .user-name.center
-    = link_to full_name(user), user
-    - if current_user.admin? && !current_user?(user)
-      %br/
-      = link_to user, method: :delete, data: { confirm: "Estás seguro?" } do
-        .fa.fa-trash.fa-fw
+  .user-outer
+    .user-inner
+      .user-gravatar
+        = link_to gravatar(user, size: 250), user
+      .user-info
+        = link_to full_name(user), user
+        - if current_user.admin? && !current_user?(user)
+          %br/
+          = link_to user, method: :delete, data: { confirm: "Estás seguro?" } do
+            %i.fa.fa-trash.fa-fw

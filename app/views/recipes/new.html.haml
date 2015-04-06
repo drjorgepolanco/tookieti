@@ -6,7 +6,7 @@
     = render "shared/title", title: "Crear Receta"
     = form_for(@recipe, html: { multipart: true }) do |f|
       = render "fields", f: f
-      = f.submit "Crear receta", class: "button expand radius"
+      = f.submit "Crear receta", class: "button expand success radius"
     %p.right
       = link_to :back do
         %i.fa.fa-arrow-circle-o-left.fa-2x

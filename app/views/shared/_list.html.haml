@@ -8,6 +8,9 @@
           %h4= recipe.title
           %h6= full_name(recipe.user)
           %h6
+            %i.fa.fa-clock-o.fa-fw
+            = recipe.prep_time
+            &nbsp&nbsp
             = link_to like_recipe_path(recipe), method: :post do
               %i.fa.fa-heart.fa-fw
               = recipe.total_likes
