@@ -1,10 +1,10 @@
 - obj.each do |recipe|
-  %a{:href => "#{recipe_path(recipe)}"}
-    .panel.recipe-index.center
+  = link_to recipe_path(recipe) do
+    .recipe-index
       .row
-        .large-7.small-7.columns.recipe-img
+        .large-6.small-6.columns.recipe-img
           = image_tag(recipe.picture.url) if recipe.picture?
-        .large-5.small-5.columns.recipe-text
+        .large-6.small-6.columns.recipe-text
           %h4= recipe.title
           %h6= full_name(recipe.user)
           %h6

@@ -1,0 +1,55 @@
+// Place all the styles related to the Recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "main"
+
+.recipe-show
+  .recipe-picture-container
+    background-color: #000
+    @extend %shadows
+  img
+    padding: 0
+    margin: 0 auto
+    display: block
+    
+  h3
+    font-size: 1.2em
+    font-weight: bold
+  .user
+    padding-top: 1em
+    text-align: center
+  .like-heart
+    padding-top: 0.5em
+    text-align: center
+  .minutes
+    font-size: 2em
+  .timestamps
+    font-size: 0.8em
+    text-align: center
+    
+.recipe-index
+  margin-top: 1em
+  margin-bottom: 1em
+  @extend %shadows
+  .recipe-img
+    margin: 0
+    padding-right: 0
+  .recipe-text
+    padding-top: 0.5em
+    h4
+      font-size: 1em
+      font-weight: bold
+    h6
+      font-size: 0.8em
+      margin-bottom: 0.5em
+    p
+      font-size: 0.6em
+      margin-bottom: 0
+.open-container
+  padding: 1em 0 1em 0
+  text-align: center
+  .open-options
+    font-weight: bold
+    
+.options
+  display: none

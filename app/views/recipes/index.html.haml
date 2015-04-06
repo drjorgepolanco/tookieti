@@ -4,11 +4,11 @@
 
 %hr/
 .pagination-centered
-  = will_paginate @collection, renderer: FoundationPagination::Rails
+  = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
 %br/
 
 = render "shared/list", obj: @recipes
 
 .pagination-centered
-  = will_paginate @collection, renderer: FoundationPagination::Rails
+  = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
 %br/

@@ -1,0 +1,60 @@
+@import "foundation_and_overrides"
+
+%shadows
+  -webkit-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6)
+  -moz-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6)
+  box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6)
+
+
+body
+  background-color: #e9e9e9
+  khtml-font-smoothing: antialiased !important
+  apple-font-smoothing: antialiased !important
+  webkit-font-smoothing: antialiased !important
+  font-smoothing: antialiased !important
+  font-weight: 300
+
+#logo
+  a
+    color: $white
+    font-family: 'Playfair Display', serif
+
+#main
+  background-color: $white
+  @extend %shadows
+
+.button
+  padding-left: 0
+  padding-right: 0
+  @extend %shadows
+  
+.center
+  text-align: center
+
+.gravatar
+  border-radius: 50%
+
+.title
+  font-size: 1.5em
+  font-weight: bold
+  text-align: center
+  margin-top: 1em
+  margin-bottom: 1em
+  font-family: 'Playfair Display', serif
+
+.subtitle
+  font-family: 'Playfair Display', serif
+
+.alert-box
+  margin-bottom: 0
+
+.pagination-centered
+  text-align: center !important
+  border: 1px solid #ccc
+  padding-top: 1em
+
+.list-item
+  background-color: $primary-color
+  color: #fff
+
+

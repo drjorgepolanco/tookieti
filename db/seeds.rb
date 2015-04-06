@@ -27,13 +27,13 @@ users = User.order(:created_at).take(6)
   title       = "#{Faker::Lorem.word} #{Faker::Lorem.word}"
   description = Faker::Lorem.sentence
   steps       = Faker::Lorem.sentence(3)
-  # prep_time   = Faker::Number.digit
+  prep_time   = Faker::Number.number(2)
   picture     = File.open(File.join(Rails.root, 'spec/fixtures/files/recipe.jpg'))
   users.each do |user|
     user.recipes.create!(title:       title,
                          description: description,
                          steps:       steps,
-                         # prep_time:   prep_time,
+                         prep_time:   prep_time,
                          picture:     picture)
   end
 end
