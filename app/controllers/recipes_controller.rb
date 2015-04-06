@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user = User.find(1)
+    @recipe.user = current_user
 
     if @recipe.save
       flash[:success] = "Tu receta fue creada!"
@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
   end
 
   def like
-    like = Like.create(like: true, user: User.first, recipe: @recipe)
+    like = Like.create(like: true, user: current_user, recipe: @recipe)
     if like.valid?
       flash[:success] = "Hey! Te gustó la receta: \"#{@recipe.title.capitalize}\""
       redirect_to(:back)

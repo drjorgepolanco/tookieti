@@ -8,10 +8,10 @@
       = render "shared/title", title: @recipe.title
   .row
     .large-3.small-3.columns
-      = gravatar(@recipe.user)
+      = link_to gravatar(@recipe.user), user_path(@recipe.user)
     .large-6.small-6.columns
       %h3.user
-        = full_name(@recipe.user)
+        = link_to full_name(@recipe.user), user_path(@recipe.user)
     .large-3.small-3.columns.like-heart
       = link_to like_recipe_path(@recipe), method: :post do
         %i.fa.fa-heart.fa-3x
@@ -43,13 +43,11 @@
     = simple_format(@recipe.steps)
   %hr/
   %p.timestamps
-    Created:
-    = time_ago_in_words(@recipe.created_at) 
-    ago.
+    Creado:
+    = time_ago_in_words(@recipe.created_at)
     %br/ 
-    Updated:
+    Actualizado:
     = time_ago_in_words(@recipe.updated_at)
-    ago. 
   %p.left
     = link_to edit_recipe_path do
       %i.fa.fa-pencil-square-o.fa-2x

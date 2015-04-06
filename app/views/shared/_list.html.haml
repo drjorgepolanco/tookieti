@@ -6,7 +6,7 @@
           = image_tag(recipe.picture.url) if recipe.picture?
         .large-6.small-6.columns.recipe-text
           %h4= recipe.title
-          %h6= full_name(recipe.user)
+          %h6= link_to full_name(recipe.user), user_path(recipe.user)
           %h6
             %i.fa.fa-clock-o.fa-fw
             = recipe.prep_time
@@ -16,6 +16,5 @@
               = recipe.total_likes
           %p
             %small
-              Updated
-              = time_ago_in_words(recipe.updated_at) 
-              ago.
+              Actualizado por última vez
+              = time_ago_in_words(recipe.updated_at)

@@ -1,18 +1,24 @@
 - provide(:title, full_name(@user))
 
-%row
-  %aside.large-2.columns#user_area
-    %section.large-12.columns.text-center
-      = gravatar(@user)
-      %h3= full_name(@user)
+.recipe-show
+  .row.recipe-picture-container
+    = gravatar(@user, size: 500)
+  .row
+    .large-12.columns
+      = render "shared/title", title: full_name(@user)
+    .large-12.columns
+      %p= simple_format(@user.bio)
+      %p.timestamps
+        Miembro desde hace:
+        = time_ago_in_words(@user.created_at) 
 - if @user.recipes.any?
   %row
     .pagination-centered
-      = will_paginate @recipes, renderer: FoundationPagination::Rails
+      = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
     %br/
 
     = render "shared/list", obj: @recipes
 
     .pagination-centered
-      = will_paginate @recipes, renderer: FoundationPagination::Rails
+      = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
     %br/
