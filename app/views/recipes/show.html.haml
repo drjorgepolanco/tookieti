@@ -25,13 +25,11 @@
         %span.minutes
           = @recipe.prep_time
         minutos
-  .row
     .large-12.medium-12.columns
       / = @recipe.cocinas
   %hr/
-  %p
-    %h3.subtitle Descripción
-    = simple_format(@recipe.description)
+  %h3.subtitle Descripción
+  = simple_format(@recipe.description)
   %hr/
   .row
     .large-12.medium-12.columns
@@ -48,9 +46,10 @@
     %br/ 
     Actualizado:
     = time_ago_in_words(@recipe.updated_at)
-  %p.left
-    = link_to edit_recipe_path do
-      %i.fa.fa-pencil-square-o.fa-2x
+  - if logged_in? && @recipe.user == current_user
+    %p.left
+      = link_to edit_recipe_path do
+        %i.fa.fa-pencil-square-o.fa-2x
   %p.right
     = link_to recipes_path do
       %i.fa.fa-arrow-circle-o-left.fa-2x
