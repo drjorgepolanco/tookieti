@@ -66,7 +66,7 @@
   %ul.off-canvas-list
     - if logged_in?
       %li
-        %label Mi Gente
+        %label Cocineros
       %li
         = link_to "#" do
           %i.fa.fa-users.fa-fw 
@@ -75,6 +75,10 @@
         = link_to "#" do
           %i.fa.fa-users.fa-fw
           Los Sigo
+      %li
+        = link_to users_path do
+          %i.fa.fa-users.fa-fw 
+          Todos
       %li
         %label Mi Cuenta
       %li

@@ -1,12 +1,11 @@
 - provide(:title, "Usuarios")
 
-.row
-  .large-12.columns.text-center
-    %h1 Users
-  .large-12.columns.pagination-centered
-    = will_paginate @collection, renderer: FoundationPagination::Rails
-  .large-12.columns
-    - @users.each do |user|
-      = render user
-  .large-12.columns.pagination-centered
-    = will_paginate @collection, renderer: FoundationPagination::Rails
+= render "shared/title", title: "Cocineros"
+
+.pagination-centered
+  = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
+.large-12.columns
+  - @users.each do |user|
+    = render user
+.large-12.columns.pagination-centered
+  = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0

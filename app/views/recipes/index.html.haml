@@ -2,7 +2,6 @@
 
 = render "shared/title", title: "Recetas"
 
-%hr/
 .pagination-centered
   = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
 %br/

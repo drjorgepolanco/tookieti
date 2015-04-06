@@ -1,6 +1,7 @@
-.intro
-  %br/
-  %a.button.expand.alert{href: "#"} Reg&iacute;strate!
+- if !logged_in?
+  .intro
+    %br/
+    %a.button.expand.alert{href: "#{signup_path}"} Reg&iacute;strate!
 
 .row.recientes
 
@@ -20,7 +21,7 @@
     = render "shared/title", title: "Cocineros"
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit delectus explicabo sequi reprehenderit ab quasi porro quae, quo neque, aliquid magni. Officiis laudantium dicta voluptatum id, nesciunt. Fugit, distinctio, illum.
-    %a.button.expand{href: ""}
+    %a.button.expand{href: "#{users_path}"}
       Conocer Cocineros
 
   .large-12.columns.item

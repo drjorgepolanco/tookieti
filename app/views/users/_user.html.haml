@@ -1,8 +1,9 @@
-.users.large-3.columns
+.users.large-6.columns
   .user-gravatar
     = gravatar(user, size: 200)
-  .user-name.text-center
+  .user-name.center
     = link_to full_name(user), user
     - if current_user.admin? && !current_user?(user)
-      |
-      = link_to "borrar", user, method: :delete, data: { confirm: "Estás seguro?" }
+      %br/
+      = link_to user, method: :delete, data: { confirm: "Estás seguro?" } do
+        .fa.fa-trash.fa-fw

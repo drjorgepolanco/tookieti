@@ -4,12 +4,11 @@
   = render "shared/error_messages", obj: @recipe
   .large-12.columns
     = render "shared/title", title: "Crear Receta"
-    %hr/
     = form_for(@recipe, html: { multipart: true }) do |f|
       = render "fields", f: f
-      = f.submit "Crear receta", class: "button expand"
+      = f.submit "Crear receta", class: "button expand radius"
     %p.right
-      = link_to recipes_path do
+      = link_to :back do
         %i.fa.fa-arrow-circle-o-left.fa-2x
 
 :coffeescript
