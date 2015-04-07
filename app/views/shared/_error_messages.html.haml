@@ -2,7 +2,8 @@
   #error_explanation
     .alert-box.alert
       The form contains #{pluralize(obj.errors.count, 'error')}.
-    %ul
-      = obj.errors.full_messages.each do |msg|
-        %li= msg
+    .large-12.small-12.columns
+      %ul
+        = obj.errors.full_messages.each do |msg|
+          %li= msg
 

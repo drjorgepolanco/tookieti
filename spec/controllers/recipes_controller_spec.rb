@@ -13,7 +13,7 @@ RSpec.describe RecipesController, type: :controller do
     @recipe     = @user.recipes.create(title: "Berengenas a la Parmesana",
                                        description: "Lorem ipsum dolor sit amet",
                                        steps: "Lorem ipsum dolor sit amet",
-                                      prep_time: 45)
+                                       prep_time: 45)
   end
 
   context "when the user is not logged in" do
