@@ -1,37 +1,6 @@
 - provide(:title, full_name(@user))
 
-.recipe-show
-  .row.recipe-picture-container
-    = gravatar(@user, size: 500)
-  .row
-    .large-12.small-12.columns
-      = render "shared/title", title: full_name(@user)
-  - unless current_user?(@user)
-    .row
-      #follow_form.large-12.small-12.columns
-        - if current_user.following?(@user)
-          = render "unfollow"
-        - else
-          = render "follow"
-  %hr/
-  .row
-    .large-12.small-12.columns.stats
-      = link_to following_user_path(@user) do
-        %strong#following.stat
-          = @user.following.count
-        seguidos
-        &nbsp | &nbsp
-      = link_to followers_user_path(@user) do
-        %strong#followers.stat
-          = @user.followers.count
-        seguidores
-  %hr/
-  .row
-    .large-12.small-12.columns
-      %p.bio= simple_format(@user.bio)
-      %p.timestamps
-        Miembro desde hace:
-        = time_ago_in_words(@user.created_at)
+= render "show_user"
 
 - if @user.recipes.any?
   .row

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [        :edit, :update          ]
-  before_action :set_user,       only: [:show,  :edit, :update          ]
-  before_action :admin_user,     only: [                        :destroy]
+  before_action :logged_in_user, except: [:show, :new,  :create]
+  before_action :correct_user,   only:   [       :edit, :update]
+  before_action :set_user,       only:   [:show, :edit, :update]
+  before_action :admin_user,     only:   [:destroy]
   
   def show
     @recipes = @user.recipes.paginate(page: params[:page], per_page: 15)
@@ -44,6 +44,20 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "El usuario ha sido borrado."
     redirect_to(users_url)
+  end
+
+  def following
+    @title = "Los Sigo"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page], per_page: 20)
+    render('show_follow')
+  end
+
+  def followers
+    @title = "Me Siguen"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page], per_page: 20)
+    render('show_follow')
   end
 
   private

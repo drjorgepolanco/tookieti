@@ -9,6 +9,7 @@ RSpec.describe UsersController, type: :controller do
                                      first_name:      "Joselito",
                                      last_name:       "Trediente",
                                      email:           "josediente@mail.com",
+                                     activated:       true,
                                      password_digest: User.digest('password'))
   end
 
@@ -37,6 +38,16 @@ RSpec.describe UsersController, type: :controller do
       }
       expect(flash[:alert]).to_not be_empty
       expect(response).to redirect_to(login_path)
+    end
+
+    it "should redirect following" do
+      get :following, id: @user
+      expect(response).to redirect_to(login_url)
+    end
+
+    it "should redirect followers" do
+      get :followers, id: @user
+      expect(response).to redirect_to(login_url)
     end
   end
 
