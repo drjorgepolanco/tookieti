@@ -16,8 +16,7 @@ RSpec.describe "UserPages", type: :request do
     before     { visit user_path(user)     }
 
     it { is_expected.to have_title(full_title(full_name(user)))    }
-    it { is_expected.to have_selector('aside#user_area')           }
-    it { is_expected.to have_selector('h3', text: full_name(user)) }
+    it { is_expected.to have_selector('h1', text: full_name(user)) }
   end
 
   describe "the process of signing up" do

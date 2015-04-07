@@ -44,7 +44,7 @@ RSpec.describe UsersController, type: :controller do
     it "should redirect edit" do
       log_in_as(@other_user)
       get :edit, id: @user
-      expect(flash).to be_empty
+      expect(flash).to_not be_empty
       expect(response).to redirect_to(root_path)
     end
 
@@ -55,7 +55,7 @@ RSpec.describe UsersController, type: :controller do
         last_name:  @user.last_name,
         email:      @user.email 
       }
-      expect(flash).to be_empty
+      expect(flash).to_not be_empty
       expect(response).to redirect_to(root_path)
     end
 

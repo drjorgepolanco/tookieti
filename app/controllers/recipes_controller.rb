@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :like]
+  before_action :set_recipe,     only:   [:show, :edit, :update, :like]
+  before_action :logged_in_user, only:   [:create, :update, :destroy]
 
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 15)
@@ -13,8 +14,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
-    @recipe.user = current_user
+    @recipe = current_user.recipes.build(recipe_params)
 
     if @recipe.save
       flash[:success] = "Tu receta fue creada!"
@@ -47,6 +47,12 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe.destroy
+    flash[:success] = "Tu receta ha sido borrada."
+    redirect_to request.referrer || root_url
+  end
+
   private
 
     def recipe_params
@@ -60,4 +66,5 @@ class RecipesController < ApplicationController
     def set_recipe
       @recipe = Recipe.find(params[:id])
     end
+
 end

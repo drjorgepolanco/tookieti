@@ -34,6 +34,30 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
+  describe "description" do
+    context "when it is not present" do
+      it "should not be valid" do
+        @recipe.description = nil
+        expect(@recipe).to_not be_valid
+      end
+    end
+  end
 
+  describe "steps" do
+    context "when it is not present" do
+      it "should not be valid" do
+        @recipe.steps = nil
+        expect(@recipe).to_not be_valid
+      end
+    end
+  end
 
+  describe "prep_time" do
+    context "when it is not present" do
+      it "should not be valid" do
+        @recipe.prep_time = nil
+        expect(@recipe).to_not be_valid
+      end
+    end
+  end
 end

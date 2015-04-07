@@ -7,7 +7,7 @@
     .large-12.columns
       = render "shared/title", title: @recipe.title
   .row
-    .large-3.small-3.columns
+    .large-3.small-3.columns.recipe-gravatar
       = link_to gravatar(@recipe.user), user_path(@recipe.user)
     .large-6.small-6.columns
       %h3.user
@@ -19,37 +19,55 @@
         = @recipe.total_likes
   %hr/
   .row
-    .large-12.medium-12.columns
-      %h3.center 
+    .large-12.small-12.columns
+      %h3.center
         %i.fa.fa-clock-o.fa-lg
         %span.minutes
           = @recipe.prep_time
         minutos
-    .large-12.medium-12.columns
-      / = @recipe.cocinas
-  %hr/
-  %h3.subtitle Descripción
-  = simple_format(@recipe.description)
   %hr/
   .row
-    .large-12.medium-12.columns
+    .large-12.small-12.columns
+      / = @recipe.cuisines
+  %hr/
+  .row
+    .large-12.small-12.columns
+      %h3.subtitle Descripción
+      = simple_format(@recipe.description)
+  %hr/
+  .row
+    .large-12.small-12.columns
       %h3.subtitle Ingredientes
       / = @recipe.ingredients
   %hr/
-  %p
-    %h3.subtitle Instrucciones
-    = simple_format(@recipe.steps)
+  .row
+    .large-12.small-12.columns
+      %h3.subtitle Instrucciones
+      = simple_format(@recipe.steps)
   %hr/
-  %p.timestamps
-    Creado:
-    = time_ago_in_words(@recipe.created_at)
-    %br/ 
-    Actualizado:
-    = time_ago_in_words(@recipe.updated_at)
-  - if logged_in? && @recipe.user == current_user
-    %p.left
-      = link_to edit_recipe_path do
-        %i.fa.fa-pencil-square-o.fa-2x
-  %p.right
-    = link_to recipes_path do
-      %i.fa.fa-arrow-circle-o-left.fa-2x
+  .row
+    .large-6.small-6.columns
+      %p.timestamps
+        Creado:
+        = time_ago_in_words(@recipe.created_at)
+    .large-6.small-6.columns
+      %p.timestamps
+        Actualizado:
+        = time_ago_in_words(@recipe.updated_at)
+  %hr/
+  .row.buttons
+    - if logged_in? && @recipe.user == current_user
+      .large-4.small-4.columns
+        = link_to edit_recipe_path do
+          %i.fa.fa-pencil-square-o.fa-2x.left
+      .large-4.small-4.columns.center
+        = link_to recipe_path(@recipe), method: :delete, data: { confirm: "You sure?" } do
+          %i.fa.fa-trash-o.fa-2x
+      .large-4.small-4.columns
+        = link_to recipes_path do
+          %i.fa.fa-arrow-circle-o-left.fa-2x.right
+    - else
+      .large-12.small-12.columns
+        %p.right.back
+          = link_to recipes_path do
+            %i.fa.fa-arrow-circle-o-left.fa-2x
