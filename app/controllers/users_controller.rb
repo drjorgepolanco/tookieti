@@ -21,7 +21,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Por favor, chequea tu email para activar tu cuenta."
+      flash[:info] = "Por favor, chequea tu email para activar tu cuenta." +
+                     "Si no encuentras el email, chequea en tu folder de spam."
       redirect_to(root_url)
     else
       render(:new)
