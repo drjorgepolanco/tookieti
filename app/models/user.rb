@@ -2,11 +2,19 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
-  has_many :recipes, dependent: :destroy
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
-  has_many :following, through: :active_relationships, source: :followed
+
+  # ASSOCIATIONS
+  has_many :recipes,               dependent:   :destroy
+  has_many :active_relationships,  class_name:  "Relationship",
+                                   foreign_key: "follower_id",
+                                   dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships
+
+  # VALIDATIONS
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :first_name, presence: true, length: { maximum: 40 }
   validates :last_name,  presence: true, length: { maximum: 40 }
@@ -17,6 +25,7 @@ class User < ActiveRecord::Base
   validates :password,   presence: true, length: { minimum: 8  },
                          allow_blank: true
 
+  # AUTHENTICATION
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
@@ -64,6 +73,7 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  # SOCIAL METHODS
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
   end

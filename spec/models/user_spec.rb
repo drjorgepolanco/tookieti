@@ -127,9 +127,10 @@ RSpec.describe User, type: :model do
   describe "relationships" do
     context "when user follows and unfollows other user" do
       it "should follow a user" do
-        expect(@user.following?(@other_user)).to be(false)
+        expect(@user.following?(@other_user)).to         be(false)
         @user.follow(@other_user)
-        expect(@user.following?(@other_user)).to be(true)
+        expect(@user.following?(@other_user)).to         be(true)
+        expect(@other_user.followers.include?(@user)).to be(true)
       end
 
       it "should unfollow a user" do
