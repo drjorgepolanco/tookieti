@@ -12,11 +12,15 @@ RSpec.describe "UserPages", type: :request do
   end
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
-    before     { visit user_path(user)     }
+    
+    before do
+      @user = FactoryGirl.create(:user) 
+      log_in_as(@user)
+      visit user_path(@user)
+    end
 
-    it { is_expected.to have_title(full_title(full_name(user)))    }
-    it { is_expected.to have_selector('h1', text: full_name(user)) }
+    it { is_expected.to have_title(full_title(full_name(@user)))    }
+    it { is_expected.to have_selector('h1', text: full_name(@user)) }
   end
 
   describe "the process of signing up" do

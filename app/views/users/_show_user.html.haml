@@ -4,13 +4,14 @@
   .row
     .large-12.small-12.columns
       = render "shared/title", title: full_name(@user)
-  - unless current_user?(@user)
-    .row
-      #follow_form.large-12.small-12.columns
-        - if current_user.following?(@user)
-          = render "unfollow"
-        - else
-          = render "follow"
+  - if logged_in?
+    - unless current_user?(@user)
+      .row
+        #follow_form.large-12.small-12.columns
+          - if current_user.following?(@user)
+            = render "unfollow"
+          - else
+            = render "follow"
   %hr/
   .row
     .large-12.small-12.columns.stats

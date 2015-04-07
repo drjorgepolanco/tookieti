@@ -1,10 +1,12 @@
 - provide(:title, "Actualiza tu perfil")
 
-%h1.text-center Actualiza tu perfil
+= render "shared/title", title: "Actualiza tu Perfil"
+.recipe-gravatar.center
+  = gravatar(@user, size: 160)
+  %br/
+  %a{href: "http://gravatar.com/emails", target: "_blank"}
+    change
+%br/
 = form_for(@user) do |f|
   = render "fields", f: f
   = f.submit "Guardar cambios", class: "button expand alert radius"
-.gravatar_edit
-  = gravatar(@user)
-  %a{href: "http://gravatar.com/emails", target: "_blank"}
-    change
