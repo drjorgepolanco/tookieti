@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-
-  get 'cuisines/new'
-
-  get 'cuisines/show'
-
-  get 'cuisines/index'
-
+  
   root               'pages#home'
   
   get    'about'  => 'pages#about'
@@ -23,6 +17,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
+  resources :cuisines,            only: [:new, :create, :show, :index]
   
   resources :recipes do
     member do
