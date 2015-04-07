@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       flash[:info] = "Por favor, chequea tu email para activar tu cuenta."
       redirect_to(root_url)
     else
-      render('new')
+      render(:new)
     end
   end
 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       flash[:success] = "Tu perfil fue actualizado satisfactoriamente."
       redirect_to(@user)
     else
-      render('edit')
+      render(:edit)
     end
   end
 

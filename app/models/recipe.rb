@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   belongs_to :user
-  has_many   :likes
+  has_many   :likes, dependent: :destroy
   validates  :title,       presence: true, length: { maximum: 100 }
   validates  :description, presence: true, length: { minimum: 10  }
   validates  :steps,       presence: true, length: { minimum: 10  }

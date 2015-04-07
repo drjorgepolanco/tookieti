@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe,     only:   [:show, :edit, :update, :like]
-  before_action :logged_in_user, only:   [:create, :update, :destroy]
+  before_action :set_recipe,           only: [:show, :edit, :update, :like, :destroy]
+  before_action :logged_in_user,     except: [:show, :index]
+  before_action :require_recipe_owner, only: [:edit, :update, :destroy]  
 
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 15)
@@ -14,13 +15,14 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
+    @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
 
     if @recipe.save
       flash[:success] = "Tu receta fue creada!"
       redirect_to(recipes_path)
     else
-      render('new')
+      render(:new)
     end
   end
 
@@ -32,7 +34,7 @@ class RecipesController < ApplicationController
       flash[:success] = "Tu receta fue actualizada!"
       redirect_to(@recipe)
     else
-      render('edit')
+      render(:edit)
     end
   end
 
@@ -50,7 +52,8 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     flash[:success] = "Tu receta ha sido borrada."
-    redirect_to request.referrer || root_url
+    # redirect_to request.referrer || recipes_path
+    redirect_to(recipes_path)
   end
 
   private
@@ -65,6 +68,13 @@ class RecipesController < ApplicationController
 
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def require_recipe_owner
+      if current_user != @recipe.user
+        flash[:alert] = "Solo puedes editar o borrar tus propias recetas."
+        redirect_to(recipes_path)
+      end
     end
 
 end
