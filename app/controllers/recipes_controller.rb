@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController 
   before_action :set_recipe,         except: [:index, :new, :create]
-  before_action :logged_in_user,     except: [:show, :index]
+  before_action :logged_in_user,     except: [:index, :show]
   before_action :require_recipe_owner, only: [:edit, :update, :destroy]  
 
   def index
