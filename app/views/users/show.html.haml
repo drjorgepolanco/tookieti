@@ -6,6 +6,15 @@
   .row
     .large-12.small-12.columns
       = render "shared/title", title: full_name(@user)
+  - unless current_user?(@user)
+    .row
+      #follow_form.large-12.small-12.columns
+        - if current_user.following?(@user)
+          = render "unfollow"
+        - else
+          = render "follow"
+  %hr/
+  .row
     .large-12.small-12.columns.stats
       = link_to following_user_path(@user) do
         %strong#following.stat
@@ -16,7 +25,8 @@
         %strong#followers.stat
           = @user.followers.count
         seguidores
-      %hr/
+  %hr/
+  .row
     .large-12.small-12.columns
       %p.bio= simple_format(@user.bio)
       %p.timestamps

@@ -1,9 +1,9 @@
 class Recipe < ActiveRecord::Base
   belongs_to :user
   has_many   :likes, dependent: :destroy
-  validates  :title,       presence: true, length: { maximum: 100 }
-  validates  :description, presence: true, length: { minimum: 10  }
-  validates  :steps,       presence: true, length: { minimum: 10  }
+  validates  :title,       presence: true, length: { maximum: 25 }
+  validates  :description, presence: true, length: { minimum: 10 }
+  validates  :steps,       presence: true, length: { minimum: 10 }
   validates  :prep_time,   presence: true
   validates  :user_id,     presence: true
   default_scope -> { order(updated_at: :desc) }

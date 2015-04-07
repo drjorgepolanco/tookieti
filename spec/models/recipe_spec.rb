@@ -28,7 +28,7 @@ RSpec.describe Recipe, type: :model do
 
     context "when it is too long" do
       it "should not be valid" do
-        @recipe.title = "a" * 101
+        @recipe.title = "a" * 26
         expect(@recipe).to_not be_valid
       end
     end
