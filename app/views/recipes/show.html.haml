@@ -2,16 +2,16 @@
 
 .recipe-show
   .row.recipe-picture-container
-    = image_tag(@recipe.picture.url, class: "recipe-picture") if @recipe.picture?
+    = image_tag(@recipe.picture.url(:show), class: "recipe-picture") if @recipe.picture?
   .row
     .large-12.columns
-      = render "shared/title", title: @recipe.title
+      = render "shared/title", title: @recipe.title.titleize
   .row
     .large-3.small-3.columns.recipe-gravatar
       = link_to gravatar(@recipe.user), user_path(@recipe.user)
     .large-6.small-6.columns
       %h3.user
-        = link_to full_name(@recipe.user), user_path(@recipe.user)
+        = link_to full_name(@recipe.user).titleize, user_path(@recipe.user)
     .large-3.small-3.columns.like-heart
       = link_to like_recipe_path(@recipe), method: :post do
         %i.fa.fa-heart.fa-3x

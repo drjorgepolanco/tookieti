@@ -3,18 +3,17 @@
     .recipe-index
       .row
         .large-6.small-6.columns.recipe-img
-          = image_tag(recipe.picture.url) if recipe.picture?
+          = image_tag(recipe.picture.url(:index)) if recipe.picture?
         .large-6.small-6.columns.recipe-text
-          %h4= recipe.title
-          %h6= link_to full_name(recipe.user), user_path(recipe.user)
-          %h6
+          %h3= recipe.title.titleize
+          %h4= link_to full_name(recipe.user).titleize, user_path(recipe.user)
+          %h4
             %i.fa.fa-clock-o.fa-fw
             = recipe.prep_time
             &nbsp&nbsp
             = link_to like_recipe_path(recipe), method: :post do
               %i.fa.fa-heart.fa-fw
               = recipe.total_likes
-          %p
-            %small
-              Actualizado por última vez
-              = time_ago_in_words(recipe.updated_at)
+          %p.timestamps
+            Actualizado hace
+            = time_ago_in_words(recipe.updated_at)

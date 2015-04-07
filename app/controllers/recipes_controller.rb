@@ -1,5 +1,5 @@
-class RecipesController < ApplicationController
-  before_action :set_recipe,           only: [:show, :edit, :update, :like, :destroy]
+class RecipesController < ApplicationController 
+  before_action :set_recipe,         except: [:index, :new, :create]
   before_action :logged_in_user,     except: [:show, :index]
   before_action :require_recipe_owner, only: [:edit, :update, :destroy]  
 
@@ -52,12 +52,10 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     flash[:success] = "Tu receta ha sido borrada."
-    # redirect_to request.referrer || recipes_path
     redirect_to(recipes_path)
   end
 
   private
-
     def recipe_params
       params.require(:recipe).permit(:title,
                                      :description,
@@ -76,5 +74,4 @@ class RecipesController < ApplicationController
         redirect_to(recipes_path)
       end
     end
-
 end
