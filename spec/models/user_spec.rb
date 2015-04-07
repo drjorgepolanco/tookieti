@@ -3,11 +3,19 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   
   before do
-    @user = User.new(first_name:            "Julito",
-                     last_name:             "Triculi", 
-                     email:                 "triculito@mail.com",
-                     password:              "worldtriculi",
-                     password_confirmation: "worldtriculi") 
+    @user       = User.create(first_name:            "Julito",
+                           last_name:             "Triculi", 
+                           email:                 "triculito@mail.com",
+                           activated:             true,
+                           password:              "worldtriculi",
+                           password_confirmation: "worldtriculi")
+    @other_user = User.create(first_name:            "Joselito",
+                           last_name:             "Trediente", 
+                           email:                 "tredientico@mail.com",
+                           activated:             true,
+                           password:              "worldtriculi",
+                           password_confirmation: "worldtriculi")
+
   end
 
   it "should be valid" do
@@ -112,6 +120,23 @@ RSpec.describe User, type: :model do
                               steps:       "Lorem ipsum dolor sit amet",
                               prep_time:   30)
         expect{@user.destroy}.to change{ Recipe.count }.by(-1)
+      end
+    end
+  end
+
+  describe "relationships" do
+    context "when user follows and unfollows other user" do
+      it "should follow a user" do
+        expect(@user.following?(@other_user)).to be(false)
+        @user.follow(@other_user)
+        expect(@user.following?(@other_user)).to be(true)
+      end
+
+      it "should unfollow a user" do
+        @user.follow(@other_user)
+        expect(@user.following?(@other_user)).to be(true)
+        @user.unfollow(@other_user)
+        expect(@user.following?(@other_user)).to be(false)
       end
     end
   end
