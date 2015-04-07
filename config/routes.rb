@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'cuisines/new'
+
+  get 'cuisines/show'
+
+  get 'cuisines/index'
+
   root               'pages#home'
   
   get    'about'  => 'pages#about'
