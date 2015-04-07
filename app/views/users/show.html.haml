@@ -4,21 +4,34 @@
   .row.recipe-picture-container
     = gravatar(@user, size: 500)
   .row
-    .large-12.columns
+    .large-12.small-12.columns
       = render "shared/title", title: full_name(@user)
-    .large-12.columns
-      %p= simple_format(@user.bio)
+    .large-12.small-12.columns.stats
+      = link_to following_user_path(@user) do
+        %strong#following.stat
+          = @user.following.count
+        seguidos
+        &nbsp | &nbsp
+      = link_to followers_user_path(@user) do
+        %strong#followers.stat
+          = @user.followers.count
+        seguidores
+      %hr/
+    .large-12.small-12.columns
+      %p.bio= simple_format(@user.bio)
       %p.timestamps
         Miembro desde hace:
-        = time_ago_in_words(@user.created_at) 
+        = time_ago_in_words(@user.created_at)
+
 - if @user.recipes.any?
-  %row
-    .pagination-centered
-      = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
-    %br/
+  .row
+    .large-12.small-12.columns
+      .pagination-centered
+        = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
+      %br/
 
-    = render "shared/list", obj: @recipes
+      = render "shared/list", obj: @recipes
 
-    .pagination-centered
-      = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
-    %br/
+      .pagination-centered
+        = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
+      %br/

@@ -12,6 +12,7 @@ User.create!(first_name:            "Jorge",
              activated:             true,
              activated_at:          Time.zone.now)
 
+# USERS
 99.times do |n|
   first_name = Faker::Name.first_name
   last_name  = Faker::Name.last_name
@@ -30,6 +31,7 @@ end
 
 users = User.order(:created_at).take(6)
 
+# RECIPES
 50.times do
   title       = "#{Faker::Lorem.word} #{Faker::Lorem.word}"
   description = Faker::Lorem.paragraph
@@ -43,4 +45,18 @@ users = User.order(:created_at).take(6)
                          prep_time:   prep_time,
                          picture:     picture)
   end
+end
+
+# RELATIONSHIPS
+users     = User.all
+user      = User.first
+following = users[2..50]
+followers = users[3..40]
+
+following.each do |followed|
+  user.follow(followed)
+end
+
+followers.each do |follower|
+  follower.follow(user)
 end

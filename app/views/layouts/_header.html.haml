@@ -68,13 +68,14 @@
       %li
         %label Cocineros
       %li
-        = link_to "#" do
+        = link_to followers_user_path(current_user) do
           %i.fa.fa-users.fa-fw 
-          Me Siguen
+          = "Me Siguen (#{current_user.followers.count})"
       %li
-        = link_to "#" do
+        = link_to following_user_path(current_user) do
           %i.fa.fa-users.fa-fw
-          Los Sigo
+          = "Los Sigo (#{current_user.following.count})"
+  
       %li
         = link_to users_path do
           %i.fa.fa-users.fa-fw 
