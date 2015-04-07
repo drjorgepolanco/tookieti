@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407223816) do
+ActiveRecord::Schema.define(version: 20150407224406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20150407223816) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "dishes", force: true do |t|
+    t.integer  "recipe_id"
+    t.integer  "cuisine_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "dishes", ["cuisine_id"], name: "index_dishes_on_cuisine_id", using: :btree
+  add_index "dishes", ["recipe_id"], name: "index_dishes_on_recipe_id", using: :btree
 
   create_table "ingredients", force: true do |t|
     t.string   "name"
@@ -38,6 +48,16 @@ ActiveRecord::Schema.define(version: 20150407223816) do
 
   add_index "likes", ["recipe_id"], name: "index_likes_on_recipe_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "meals", force: true do |t|
+    t.integer  "recipe_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "meals", ["ingredient_id"], name: "index_meals_on_ingredient_id", using: :btree
+  add_index "meals", ["recipe_id"], name: "index_meals_on_recipe_id", using: :btree
 
   create_table "recipes", force: true do |t|
     t.integer  "user_id"
@@ -82,7 +102,11 @@ ActiveRecord::Schema.define(version: 20150407223816) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "dishes", "cuisines"
+  add_foreign_key "dishes", "recipes"
   add_foreign_key "likes", "recipes"
   add_foreign_key "likes", "users"
+  add_foreign_key "meals", "ingredients"
+  add_foreign_key "meals", "recipes"
   add_foreign_key "recipes", "users"
 end
