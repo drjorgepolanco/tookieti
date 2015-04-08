@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root               'pages#home'
   
   get    'about'  => 'pages#about'
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
   resources :cuisines,            only: [:new, :create, :show, :index]
+  resources :ingredients,         only: [:new, :create, :show, :index]
   
   resources :recipes do
     member do
