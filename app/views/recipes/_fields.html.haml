@@ -9,9 +9,9 @@
 .options
   .large-6.small-6.columns
     %strong Cocinas:
-    = f.collection_check_boxes :cuisine_ids, Cuisine.all, :id, :name do |cuisine|
+    = f.collection_check_boxes :cuisine_ids, Cuisine.order(:name), :id, :name do |cuisine|
       - cuisine.label {cuisine.check_box + " " + cuisine.text}
   .large-6.small-6.columns
     %strong Ingredientes:
-    = f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |ing|
+    = f.collection_check_boxes :ingredient_ids, Ingredient.order(:name), :id, :name do |ing|
       = ing.label {ing.check_box + " " + ing.text}
