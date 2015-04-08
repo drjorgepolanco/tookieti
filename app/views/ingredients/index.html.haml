@@ -1,2 +1,7 @@
-%h1 Ingredients#index
-%p Find me in app/views/ingredients/index.html.haml
+- provide(:title, "Ingredientes")
+
+= render "shared/title", title: "Ingredientes"
+%hr/
+- @ingredients.each do |ingredient|
+  %a.button.radius.expand{:href => "#{cuisine_path(cuisine)}"}
+    = ingredient.name.titleize
