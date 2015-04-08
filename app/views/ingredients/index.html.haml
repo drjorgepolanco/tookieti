@@ -3,5 +3,5 @@
 = render "shared/title", title: "Ingredientes"
 %hr/
 - @ingredients.each do |ingredient|
-  %a.button.radius.expand{:href => "#{cuisine_path(cuisine)}"}
+  %a.button.radius.expand{:href => "#{ingredient_path(ingredient)}"}
     = ingredient.name.titleize
