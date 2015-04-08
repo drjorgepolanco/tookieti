@@ -28,7 +28,7 @@
   %hr/
   .row
     .large-12.small-12.columns
-      / = @recipe.cuisines
+      = render @recipe.cuisines
   %hr/
   .row
     .large-12.small-12.columns
@@ -38,7 +38,7 @@
   .row
     .large-12.small-12.columns
       %h3.subtitle Ingredientes
-      / = @recipe.ingredients
+      = render @recipe.ingredients
   %hr/
   .row
     .large-12.small-12.columns
