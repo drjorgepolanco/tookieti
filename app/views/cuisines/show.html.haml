@@ -1,2 +1,14 @@
-%h1 Cuisines#show
-%p Find me in app/views/cuisines/show.html.haml
+- provide(:title, "Cocina #{@cuisine.name.capitalize}")
+
+= render "shared/title", title: "Recetas de Cocina #{@cuisine.name.capitalize}"
+
+%hr/
+.pagination-centered
+  = will_paginate @recipes, renderer: FoundationPagination::Rails
+%br/
+
+= render "shared/list", obj: @cuisine.recipes
+
+.pagination-centered
+  = will_paginate @recipes, renderer: FoundationPagination::Rails
+%br/

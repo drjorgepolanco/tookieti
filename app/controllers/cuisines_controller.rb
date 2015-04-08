@@ -1,7 +1,7 @@
 class CuisinesController < ApplicationController
   
   def index
-    @cuisine = Cuisine.order(:name)
+    @cuisines = Cuisine.order(:name)
   end
 
   def show
