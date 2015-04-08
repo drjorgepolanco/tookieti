@@ -1,0 +1,7 @@
+- provide(:title, "Cocinas")
+
+= render "shared/title", title: "Cocinas"
+%hr/
+- @cuisines.each do |cuisine|
+  %a.button.radius.expand{:href => "#{cuisine_path(cuisine)}"}
+    = cuisine.name.titleize

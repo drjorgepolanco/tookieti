@@ -61,7 +61,9 @@ class RecipesController < ApplicationController
                                      :description,
                                      :steps,
                                      :prep_time,
-                                     :picture)
+                                     :picture,
+                                     cuisine_ids:    [],
+                                     ingredient_ids: [])
     end
 
     def set_recipe

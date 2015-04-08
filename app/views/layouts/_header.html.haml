@@ -26,21 +26,21 @@
       %li
         %label Cocinas
       %li
-        = link_to "#" do
+        = link_to new_cuisine_path do
           %i.fa.fa-plus-circle.fa-fw
           Crear Cocina
       %li
-        = link_to "#" do
+        = link_to cuisines_path do
           %i.fa.fa-flag.fa-fw
           Ver Cocinas
       %li
         %label Ingredientes
       %li
-        = link_to "#" do
+        = link_to new_ingredient_path do
           %i.fa.fa-plus-circle.fa-fw
           Crear Ingrediente
       %li
-        = link_to "#" do
+        = link_to ingredients_path do
           %i.fa.fa-shopping-cart.fa-fw
           Ver Ingredientes
     - else
@@ -53,13 +53,13 @@
       %li
         %label Por Cocina
       %li
-        = link_to "#" do
+        = link_to cuisines_path do
           %i.fa.fa-flag.fa-fw
           Ver Cocinas
       %li
         %label Por Ingredientes
       %li
-        = link_to "#" do
+        = link_to ingredients_path do
           %i.fa.fa-shopping-cart.fa-fw
           Ver Ingredientes
 %aside.right-off-canvas-menu
