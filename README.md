@@ -9,11 +9,29 @@
 - CoffeeScript
 
 ###Feautures
-- Create and Share Recipes
-- Create Cuisines
-- Create Ingredients
-- Follow and be followed by other users
-- Like Recipes (Only once per recipe)
+####(All written from scratch)
+- Full Authentication System with:
+	- Account Activation
+	- Password Reset
+- Users
+	- Create
+	- Read
+	- Update
+	- Destroy
+	- Follow
+	- Be followed  
+- Recipes
+	- Create, choosing Cuisines and Ingredients
+	- Read
+	- Update
+	- Destroy
+	- Like (Once per recipe per User)
+- Cuisines
+	- Create
+	- Read 	
+- Ingredients
+	- Create
+	- Read 
 - Browse Recipes by: 
 	- Ingredients
 	- Cuisines
