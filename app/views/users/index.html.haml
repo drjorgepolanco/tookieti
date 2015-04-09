@@ -4,9 +4,11 @@
 
 .pagination-centered
   = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
-
-- @users.each do |user|
-  = render user
+.large-12.small-12.columns
+  #wrapper
+    #columns
+      - @users.each do |user|
+        = render user
 
 .large-12.columns.pagination-centered
   = will_paginate @collection, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0

@@ -7,6 +7,8 @@
     padding: 0.5em
     .user-inner
       @extend %shadows
+      border-radius: 5px
+      // border: 1px solid #ccc
       .user-gravatar
         @extend %shadows
       .user-info
@@ -15,6 +17,7 @@
         text-align: center
         font-weight: bold
 
+
 .stats
   text-align: center
 .bio
@@ -22,3 +25,30 @@
 #follow_form
   .button
     margin-bottom: 0
+
+#wrapper
+  width: 100%
+  max-width: 640px
+  min-width: 320px
+  margin: 6px auto
+
+#columns
+  -webkit-column-count: 2
+  -webkit-column-gap: 10px
+  -webkit-column-fill: auto
+  -moz-column-count: 2
+  -moz-column-gap: 10px
+  -moz-column-fill: auto
+  column-count: 2
+  column-gap: 10px
+  column-fill: auto
+
+.thumb
+  display: inline-block
+  margin: 6px 4px 4px 4px
+  -webkit-column-break-inside: avoid
+  -moz-column-break-inside: avoid
+  column-break-inside: avoid
+  padding: 0px
+  background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9)
+  opacity: 1
