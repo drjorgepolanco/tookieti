@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships
+  has_many :likes
+  has_many :recipes, through: :likes
 
   # VALIDATIONS
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
