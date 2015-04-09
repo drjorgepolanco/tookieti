@@ -23,6 +23,13 @@ class CuisinesController < ApplicationController
     end
   end
 
+  def destroy
+    @cuisine = Cuisine.find(params[:id])
+    @cuisine.destroy
+    flash[:success] = "La cocina ha sido borrada."
+    redirect_to(cuisines_path)
+  end
+
   private
 
     def cuisine_params

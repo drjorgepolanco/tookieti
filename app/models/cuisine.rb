@@ -3,7 +3,7 @@ class Cuisine < ActiveRecord::Base
   validates   :name, presence: true, length: { minimum: 3, maximum: 20 }, 
                                  uniqueness: { case_sensitive: false   }
 
-  has_many    :dishes
+  has_many    :dishes,  dependent: :destroy
   has_many    :recipes, through:   :dishes
 
   private

@@ -2,6 +2,10 @@
 
 = render "shared/title", title: "Recetas de Cocina #{@cuisine.name.capitalize}"
 
+.center
+  = link_to cuisine_path(@cuisine), method: :delete, data: { confirm: "Estás seguro?" } do
+    %i.fa.fa-trash-o.fa-2x
+
 %hr/
 .pagination-centered
   = will_paginate @recipes, renderer: FoundationPagination::Rails, inner_window: 1, outer_window: 0
