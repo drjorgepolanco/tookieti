@@ -3,8 +3,8 @@ class Ingredient < ActiveRecord::Base
   validates   :name, presence: true, length: { minimum: 3, maximum: 20 }, 
                                uniqueness: { case_sensitive: false   }
 
-  has_many    :meals
-  has_many    :recipes, through: :meals
+  has_many    :meals,   dependent: :destroy
+  has_many    :recipes, through:   :meals
 
   private
 

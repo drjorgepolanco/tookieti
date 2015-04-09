@@ -4,7 +4,7 @@ class Cuisine < ActiveRecord::Base
                                  uniqueness: { case_sensitive: false   }
 
   has_many    :dishes
-  has_many    :recipes, through: :dishes
+  has_many    :recipes, through:   :dishes
 
   private
 

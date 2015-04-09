@@ -23,6 +23,13 @@ class IngredientsController < ApplicationController
     end
   end
 
+  def destroy
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.destroy
+    flash[:success] = "El ingrediente ha sido borrado."
+    redirect_to(ingredients_path)
+  end
+
   private
 
     def ingredient_params
